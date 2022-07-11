@@ -81,7 +81,12 @@ function Table<T>(props: { columns: Column<T>[]; data: T[] }) {
                   >
                     <For each={props.columns}>
                       {(column) => (
-                        <div style={{ width: column.width }}>
+                        <div
+                          class="TableCell"
+                          style={{
+                            width: column.width,
+                          }}
+                        >
                           {column.render({
                             value: props.data[virtualItem.index],
                           })}

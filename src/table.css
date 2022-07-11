@@ -13,3 +13,9 @@
 .TableItemEven {
   background-color: #e6e4dc;
 }
+
+.TableCell {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
