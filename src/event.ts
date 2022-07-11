@@ -8,6 +8,7 @@ export type DeltaChatEvent = {
 export type DeclarationField = {
   label: string;
   type: "string" | "int";
+  nullable: boolean;
 };
 
 export type EventDeclaration = {
@@ -15,107 +16,150 @@ export type EventDeclaration = {
   data2?: DeclarationField;
 };
 
-const INFO_FIELD: DeclarationField = { label: "info", type: "string" };
-const PATH_FIELD: DeclarationField = { label: "path", type: "string" };
-const CHAT_ID_FIELD: DeclarationField = { label: "chat id", type: "int" };
-const MSG_ID_FIELD: DeclarationField = { label: "msg id", type: "int" };
-const TIMER_FIELD: DeclarationField = { label: "timer", type: "int" };
-const CONTACT_ID_FIELD: DeclarationField = { label: "contact id", type: "int" };
-const PROGRESS_FIELD: DeclarationField = { label: "progress", type: "int" };
-const WEBXDC_SERIAL_FIELD: DeclarationField = { label: "serial", type: "int" };
+const INFO_FIELD: DeclarationField = {
+  label: "info",
+  type: "string",
+  nullable: false,
+};
+const OPTIONAL_INFO_FIELD: DeclarationField = {
+  label: "info",
+  type: "string",
+  nullable: true,
+};
+
+const PATH_FIELD: DeclarationField = {
+  label: "path",
+  type: "string",
+  nullable: false,
+};
+const CHAT_ID_FIELD: DeclarationField = {
+  label: "chat id",
+  type: "int",
+  nullable: false,
+};
+const MSG_ID_FIELD: DeclarationField = {
+  label: "msg id",
+  type: "int",
+  nullable: false,
+};
+const TIMER_FIELD: DeclarationField = {
+  label: "timer",
+  type: "int",
+  nullable: false,
+};
+const CONTACT_ID_FIELD: DeclarationField = {
+  label: "contact id",
+  type: "int",
+  nullable: false,
+};
+const OPTIONAL_CONTACT_ID_FIELD: DeclarationField = {
+  label: "contact id",
+  type: "int",
+  nullable: true,
+};
+const PROGRESS_FIELD: DeclarationField = {
+  label: "progress",
+  type: "int",
+  nullable: false,
+};
+const WEBXDC_SERIAL_FIELD: DeclarationField = {
+  label: "serial",
+  type: "int",
+  nullable: false,
+};
 
 export type EventDeclarations = { [name: string]: EventDeclaration };
 export const eventDeclarations: EventDeclarations = {
-  DC_EVENT_INFO: {
+  Info: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_SMTP_CONNECTED: {
+  SmtpConnected: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_IMAP_CONNECTED: {
+  ImapConnected: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_SMTP_MESSAGE_SENT: {
+  SmptMessageSent: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_IMAP_MESSAGE_DELETED: {
+  ImapMessageDeleted: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_IMAP_MESSAGE_MOVED: {
+  ImapMessageMoved: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_NEW_BLOB_FILE: {
+  NewBlobFile: {
     data2: PATH_FIELD,
   },
-  DC_EVENT_DELETED_BLOB_FILE: {
+  DeletedBlobFile: {
     data2: PATH_FIELD,
   },
-  DC_EVENT_WARNING: {
+  Warning: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_ERROR: {
+  Error: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_ERROR_SELF_NOT_IN_GROUP: {
+  ErrorSelfNotInGroup: {
     data2: INFO_FIELD,
   },
-  DC_EVENT_MSGS_CHANGED: {
+  MsgsChanged: {
     data1: CHAT_ID_FIELD,
     data2: MSG_ID_FIELD,
   },
-  DC_EVENT_INCOMING_MSG: {
+  IncomingMsg: {
     data1: CHAT_ID_FIELD,
     data2: MSG_ID_FIELD,
   },
-  DC_EVENT_MSGS_NOTICED: {
+  MsgsNoticed: {
     data1: CHAT_ID_FIELD,
   },
-  DC_EVENT_MSG_DELIVERED: {
-    data1: CHAT_ID_FIELD,
-    data2: MSG_ID_FIELD,
-  },
-  DC_EVENT_MSG_FAILED: {
+  MsgDelivered: {
     data1: CHAT_ID_FIELD,
     data2: MSG_ID_FIELD,
   },
-  DC_EVENT_MSG_READ: {
+  MsgFailed: {
     data1: CHAT_ID_FIELD,
     data2: MSG_ID_FIELD,
   },
-  DC_EVENT_CHAT_MODIFIED: {
+  MsgRead: {
+    data1: CHAT_ID_FIELD,
+    data2: MSG_ID_FIELD,
+  },
+  ChatModified: {
     data1: CHAT_ID_FIELD,
   },
-  DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED: {
+  ChatEmphemeralTimerModified: {
     data1: CHAT_ID_FIELD,
     data2: TIMER_FIELD,
   },
-  DC_EVENT_CONTACTS_CHANGED: {
-    data1: CONTACT_ID_FIELD,
+  ContactsChanged: {
+    data1: OPTIONAL_CONTACT_ID_FIELD,
   },
-  DC_EVENT_LOCATION_CHANGED: {
-    data1: CONTACT_ID_FIELD,
+  LocationChanged: {
+    data1: OPTIONAL_CONTACT_ID_FIELD,
   },
-  DC_EVENT_CONFIGURE_PROGRESS: {
+  ConfigureProgress: {
     data1: PROGRESS_FIELD,
-    data2: INFO_FIELD,
+    data2: OPTIONAL_INFO_FIELD,
   },
-  DC_EVENT_IMEX_PROGRESS: {
+  ImexProgress: {
     data1: PROGRESS_FIELD,
   },
-  DC_EVENT_IMEX_FILE_WRITTEN: {
+  ImexFileWritten: {
     data2: PATH_FIELD,
   },
-  DC_EVENT_SECUREJOIN_INVITER_PROGRESS: {
+  SecureJoinInviterProgress: {
     data1: CONTACT_ID_FIELD,
     data2: PROGRESS_FIELD,
   },
-  DC_EVENT_SECUREJOIN_JOINER_PROGRESS: {
+  SecureJoinJoinerProgress: {
     data1: CONTACT_ID_FIELD,
     data2: PROGRESS_FIELD,
   },
-  DC_EVENT_CONNECTIVITY_CHANGED: {},
-  DC_EVENT_SELFAVATAR_CHANGED: {},
-  DC_EVENT_WEBXDC_STATUS_UPDATE: {
+  ConnectivityChanged: {},
+  SelfavatarChanged: {},
+  WebxdcStatusUpdate: {
     data1: MSG_ID_FIELD,
     data2: WEBXDC_SERIAL_FIELD,
   },
