@@ -50,7 +50,10 @@
     "vite-plugin-solid": "^2.2.6"
   },
   "dependencies": {
+    "@tanstack/virtual-core": "^3.0.0-alpha.1",
     "dexie": "^3.2.2",
-    "solid-js": "^1.4.6"
+    "solid-dexie": "^0.0.5",
+    "solid-js": "^1.4.6",
+    "the-new-css-reset": "^1.7.2"
   }
 }

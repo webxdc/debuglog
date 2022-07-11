@@ -1,0 +1,15 @@
+.Table {
+    border: 1px solid #e6e4dc;
+    max-width: 100%;
+  }
+
+.TableItemEven,
+.TableItemOdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.TableItemEven {
+  background-color: #e6e4dc;
+}
