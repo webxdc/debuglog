@@ -1,6 +1,7 @@
-import { Component, createSignal, For, Show, createEffect } from "solid-js";
+import { Component, For } from "solid-js";
 
 import { createVirtualizer } from "./solid-virtual";
+
 import "./table.css";
 
 export type Column<T> = {
@@ -41,7 +42,7 @@ function Table<T>(props: { columns: Column<T>[]; data: T[] }) {
         ref={scrollParentRef}
         class="Table"
         style={{
-          height: `400px`,
+          height: `100%`,
           width: `100%`,
           overflow: "auto",
         }}

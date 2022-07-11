@@ -1,33 +1,38 @@
 import { Component } from "solid-js";
 
 import Table, { Column } from "./Table";
+import { DeltaChatEvent } from "./event";
+import { randomEvents } from "./fake-event";
 
-type Record = {
-  label: string;
-  value: number;
-};
-
-const columns: Column<Record>[] = [
+const columns: Column<DeltaChatEvent>[] = [
   {
-    label: "Label",
-    width: "70%",
-    render: (props) => props.value.label,
+    label: "ts",
+    width: "20%",
+    render: (props) => new Date(props.value.ts).toISOString(),
   },
-  { label: "Value", width: "30%", render: (props) => props.value.value },
+  {
+    label: "event",
+    width: "30%",
+    render: (props) => props.value.event_type,
+  },
+  {
+    label: "data1",
+    width: "30%",
+    render: (props) => props.value.data1,
+  },
+  {
+    label: "data2",
+    width: "30%",
+    render: (props) => props.value.data2,
+  },
 ];
 
-const data: Record[] = [];
-for (let i = 0; i < 10000; i++) {
-  data.push({
-    label: `Label ${i}`,
-    value: i,
-  });
-}
+const events = randomEvents(new Date(Date.now()), 1000);
 
 const App: Component = () => {
   return (
     <div>
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={events} />
     </div>
   );
 };
