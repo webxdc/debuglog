@@ -6,3 +6,5 @@ The `unreleased` heading is updated automatically to the right version and
 release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
+
+Initial public release.
