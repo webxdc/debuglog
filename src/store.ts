@@ -54,6 +54,8 @@ const fulltextIndex = lunr((o) => {
   o.field("event_type", { boost: 50 });
   o.field("data1", { boost: 100 });
   o.field("data2", { boost: 100 });
+  // XXX this will be very expensive if new events come in, so
+  // need to change strategy then
   createEffect(() => {
     for (const event of events) {
       idToEvent.set(event.id, event);
