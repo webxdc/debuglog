@@ -2,6 +2,8 @@
 
 ## Search
 
+- Remove the filter for event as fulltext is enough.
+
 - A spinner when search is initiated
 
 - Automatically adding wildcards before each word in search? But not
