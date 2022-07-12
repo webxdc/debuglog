@@ -3,6 +3,7 @@ import { Component, createSignal, createMemo } from "solid-js";
 import Table, { Column } from "./Table";
 import EventTypeFilter from "./EventTypeFilter";
 import TimestampRangeFilter from "./TimestampRangeFilter";
+import TextInput from "./TextInput";
 import { DeltaChatEvent } from "./event";
 import { searchEvents, TimestampRange } from "./store";
 
@@ -35,13 +36,16 @@ const App: Component = () => {
     start: null,
     end: null,
   });
+  const [fulltext, setFulltext] = createSignal<string>("");
 
   const events = createMemo(() =>
     searchEvents({
       eventType: eventType(),
       timestampRange: timestampRange(),
+      fulltext: fulltext(),
     })
   );
+
   return (
     <div>
       <EventTypeFilter value={eventType} setValue={setEventType} />
@@ -49,6 +53,7 @@ const App: Component = () => {
         value={timestampRange}
         setValue={setTimestampRange}
       />
+      <TextInput value={fulltext} setValue={setFulltext} debounce={500} />
       <Table columns={columns} data={events} />
     </div>
   );

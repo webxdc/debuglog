@@ -1,4 +1,5 @@
 export type DeltaChatEvent = {
+  id: number;
   ts: number;
   event_type: string;
   data1: string | number | undefined;

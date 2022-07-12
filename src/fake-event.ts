@@ -16,7 +16,7 @@ export function randomEvents(
   const result: DeltaChatEvent[] = [];
   let ts = startTime.getTime();
   for (let i = 0; i < amount; i++) {
-    result.push(randomEvent(declarations, ts));
+    result.push(randomEvent(declarations, i, ts));
     ts = ts + randomInt(1000);
   }
   return result;
@@ -24,10 +24,12 @@ export function randomEvents(
 
 function randomEvent(
   declarations: EventDeclarationArray,
+  id: number,
   ts: number
 ): DeltaChatEvent {
   const [eventType, declaration] = declarations[randomInt(declarations.length)];
   return {
+    id,
     ts,
     event_type: eventType,
     data1: randomField(declaration.data1),
