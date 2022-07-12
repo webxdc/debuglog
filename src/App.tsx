@@ -1,9 +1,10 @@
-import { Component, createSignal } from "solid-js";
+import { Component, createSignal, createMemo } from "solid-js";
 
 import Table, { Column } from "./Table";
 import EventTypeFilter from "./EventTypeFilter";
+import TimestampRangeFilter from "./TimestampRangeFilter";
 import { DeltaChatEvent } from "./event";
-import { searchEvents } from "./store";
+import { searchEvents, TimestampRange } from "./store";
 
 const columns: Column<DeltaChatEvent>[] = [
   {
@@ -30,13 +31,25 @@ const columns: Column<DeltaChatEvent>[] = [
 
 const App: Component = () => {
   const [eventType, setEventType] = createSignal<string | undefined>(undefined);
+  const [timestampRange, setTimestampRange] = createSignal<TimestampRange>({
+    start: null,
+    end: null,
+  });
+
+  const events = createMemo(() =>
+    searchEvents({
+      eventType: eventType(),
+      timestampRange: timestampRange(),
+    })
+  );
   return (
     <div>
-      <EventTypeFilter eventType={eventType} setEventType={setEventType} />
-      <Table
-        columns={columns}
-        data={searchEvents({ eventType: eventType() })}
+      <EventTypeFilter value={eventType} setValue={setEventType} />
+      <TimestampRangeFilter
+        value={timestampRange}
+        setValue={setTimestampRange}
       />
+      <Table columns={columns} data={events} />
     </div>
   );
 };

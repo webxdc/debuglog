@@ -15,7 +15,6 @@ export function randomEvents(
   const declarations = createEventDeclarationArray(eventDeclarations);
   const result: DeltaChatEvent[] = [];
   let ts = startTime.getTime();
-  console.log(ts);
   for (let i = 0; i < amount; i++) {
     result.push(randomEvent(declarations, ts));
     ts = ts + randomInt(1000);

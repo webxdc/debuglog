@@ -4,11 +4,11 @@ import { eventTypes } from "./event";
 type SelectValue = string | undefined;
 
 const EventTypeFilter: Component<{
-  eventType: Accessor<SelectValue>;
-  setEventType: Setter<SelectValue>;
+  value: Accessor<SelectValue>;
+  setValue: Setter<SelectValue>;
 }> = (props) => {
   const eventType = () => {
-    const value = props.eventType();
+    const value = props.value();
     if (value == null) {
       return "*";
     }
@@ -22,7 +22,7 @@ const EventTypeFilter: Component<{
       onChange={(ev) => {
         const value = ev.currentTarget.value;
         const eventType = value !== "*" ? value : undefined;
-        props.setEventType(eventType);
+        props.setValue(eventType);
       }}
     >
       <option value="*">No filter</option>

@@ -1,0 +1,16 @@
+
+html {
+    /* https://matthewjamestaylor.com/responsive-font-size */
+    font-size: calc(15px + 0.390625vw);
+    font-family: "Arial"
+}
+
+input:not([type=submit]):not([type=file]) {
+    /* https://css-tricks.com/styling-texty-inputs-only/ */
+    padding:10px;
+    /* border:0; */
+    border: 2px solid #eee;
+    border-radius: 10px;
+    /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
+ }
+

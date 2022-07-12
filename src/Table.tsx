@@ -1,4 +1,4 @@
-import { JSX, Component, For } from "solid-js";
+import { JSX, Component, For, Accessor, createMemo } from "solid-js";
 
 import { createVirtualizer } from "./solid-virtual";
 
@@ -10,16 +10,17 @@ export type Column<T> = {
   render: Component<{ value: T }>;
 };
 
-function Table<T>(props: { columns: Column<T>[]; data: T[] }) {
+function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
   let scrollParentRef: HTMLDivElement | undefined;
 
-  // XXX can we use props.data.length here? it's not reactive
-  const rowVirtualizer = createVirtualizer({
-    count: props.data.length,
-    getScrollElement: () => scrollParentRef,
-    estimateSize: () => 35,
-    overscan: 5,
-  });
+  const rowVirtualizer = createMemo(() =>
+    createVirtualizer({
+      count: props.data().length,
+      getScrollElement: () => scrollParentRef,
+      estimateSize: () => 35,
+      overscan: 5,
+    })
+  );
 
   return (
     <>
@@ -51,12 +52,12 @@ function Table<T>(props: { columns: Column<T>[]; data: T[] }) {
       >
         <div
           style={{
-            height: `${rowVirtualizer.getTotalSize()}px`,
+            height: `${rowVirtualizer().getTotalSize()}px`,
             width: "100%",
             position: "relative",
           }}
         >
-          <For each={rowVirtualizer.getVirtualItems()}>
+          <For each={rowVirtualizer().getVirtualItems()}>
             {(virtualItem) => {
               return (
                 <div
@@ -90,7 +91,7 @@ function Table<T>(props: { columns: Column<T>[]; data: T[] }) {
                           }}
                         >
                           {column.render({
-                            value: props.data[virtualItem.index],
+                            value: props.data()[virtualItem.index],
                           })}
                         </div>
                       )}
