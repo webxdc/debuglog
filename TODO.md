@@ -2,15 +2,11 @@
 
 ## Search
 
-- How should search work? Add everything into a full text search index?
-  lunr?
-
-- But what about the multifaced messages?
-
-- Trigger date update only on onBlur?
-
 - A spinner when search is initiated
 
 ## Layout
 
-- Proper layout of "not a date"
+- Proper layout of ConverterInput error messages.
+
+- Tooltip support in UI for ellipses items, and also for help
+  on search boxes.
