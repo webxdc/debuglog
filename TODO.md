@@ -10,3 +10,7 @@
 - Trigger date update only on onBlur?
 
 - A spinner when search is initiated
+
+## Layout
+
+- Proper layout of "not a date"
