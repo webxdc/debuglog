@@ -15,7 +15,7 @@ export type TimestampRange = {
 
 const [events, setEvents] = createStore<DeltaChatEvent[]>([]);
 
-setEvents(randomEvents(new Date(Date.now()), 10));
+setEvents(randomEvents(new Date(Date.now()), 1000));
 
 function inRange(timestampRange: TimestampRange, timestamp: number): boolean {
   return (

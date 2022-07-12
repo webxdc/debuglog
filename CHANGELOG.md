@@ -7,6 +7,10 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+### Added
+
+- Filters for date ranges
+
 ## [0.0.4][] - 2022-07-12
 
 ### Added
@@ -22,7 +26,5 @@ Initial public release.
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.0.3...HEAD
 [0.0.3]: https://github.com/webxdc/debuglog/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/webxdc/debuglog/tree/v0.0.2
-
-
-[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.0.4...HEAD
+[unreleased]: https://github.com/webxdc/debuglog/compare/v0.0.4...HEAD
 [0.0.4]: https://github.com/webxdc/debuglog/tree/v0.0.4
