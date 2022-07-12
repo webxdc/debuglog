@@ -1,4 +1,4 @@
-import { Component, For } from "solid-js";
+import { JSX, Component, For } from "solid-js";
 
 import { createVirtualizer } from "./solid-virtual";
 
