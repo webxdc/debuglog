@@ -7,6 +7,8 @@ import {
   Show,
 } from "solid-js";
 
+import { debounce } from "./debounce";
+
 const DateInput: Component<{
   value: Accessor<Date | undefined>;
   setValue: Setter<Date | undefined>;
@@ -22,10 +24,14 @@ const DateInput: Component<{
   const [error, setError] = createSignal<string | undefined>(undefined);
   const [textValue, setTextValue] = createSignal(value());
 
+  const debouncedSetValue = debounce((converted: Date | undefined) => {
+    props.setValue(converted);
+  }, 200);
+
   createEffect(() => {
     if (textValue() === "") {
       setError(undefined);
-      props.setValue(undefined);
+      debouncedSetValue(undefined);
       return;
     }
     let converted: Date;
@@ -40,7 +46,7 @@ const DateInput: Component<{
       return;
     }
     setError(undefined);
-    props.setValue(converted);
+    debouncedSetValue(converted);
     setTextValue(converted.toISOString());
   });
 
