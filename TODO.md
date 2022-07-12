@@ -7,4 +7,6 @@
 
 - But what about the multifaced messages?
 
-- Use a debounce for date input
+- Trigger date update only on onBlur?
+
+- A spinner when search is initiated
