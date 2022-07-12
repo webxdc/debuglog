@@ -24,7 +24,7 @@
     "webxdc-dev-xdc": "npm run webxdc-build && webxdc-dev run debuglog.xdc",
     "serve": "vite preview",
     "test": "jest",
-    "typecheck": "tsc --project tsconfig.json",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "version": "version-changelog CHANGELOG.md && git add CHANGELOG.md",
     "prepublishOnly": "npm run build"
   },
