@@ -25,11 +25,15 @@ jobs:
         run: npm ci --ignore-scripts
       - name: Typecheck
         run: npm run typecheck
-      - name: Test
-        run: npm run test
       - name: Build
-        run: npm run build
-      - name: Publish package to NPM
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm run webxdc-build
+      - name: Extract release notes
+        uses: ffurrer2/extract-release-notes@v1
+        with:
+          release_notes_file: RELEASE_NOTES.md
+      - name: Release package on github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "debuglog.xdc"
+          bodyFile: "RELEASE_NOTES.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
