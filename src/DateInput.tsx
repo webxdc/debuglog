@@ -1,66 +1,43 @@
-import {
-  createEffect,
-  createSignal,
-  Component,
-  Accessor,
-  Setter,
-  Show,
-} from "solid-js";
+import { Component, Accessor, Setter } from "solid-js";
 
-import { debounce } from "./debounce";
+import ConverterInput, { ConverterResult } from "./ConverterInput";
 
 const DateInput: Component<{
   value: Accessor<Date | undefined>;
   setValue: Setter<Date | undefined>;
 }> = (props) => {
-  const value = () => {
-    const v = props.value();
-    if (v == null) {
-      return "";
-    }
-    return v.toISOString();
+  const render = (value: Date | undefined) => {
+    return value != null ? value.toISOString() : "";
   };
-
-  const [error, setError] = createSignal<string | undefined>(undefined);
-  const [textValue, setTextValue] = createSignal(value());
-
-  const debouncedSetValue = debounce((converted: Date | undefined) => {
-    props.setValue(converted);
-  }, 200);
-
-  createEffect(() => {
-    if (textValue() === "") {
-      setError(undefined);
-      debouncedSetValue(undefined);
-      return;
+  const convert = (text: string): ConverterResult<Date | undefined> => {
+    if (text.trim() === "") {
+      return { type: "success", value: undefined };
     }
     let converted: Date;
     try {
-      converted = new Date(textValue());
+      converted = new Date(text);
     } catch {
-      setError("Illegal date");
-      return;
+      return { type: "failure", message: "Illegal date" };
     }
     if (isNaN(converted as any)) {
-      setError("Illegal date");
-      return;
+      return { type: "failure", message: "Illegal date" };
     }
-    setError(undefined);
-    debouncedSetValue(converted);
-    setTextValue(converted.toISOString());
-  });
+    return {
+      type: "success",
+      value: converted,
+    };
+  };
 
   return (
     <>
-      <input
-        type="text"
+      <ConverterInput
         placeholder="Date"
-        value={textValue()}
-        onInput={(ev) => {
-          setTextValue(ev.currentTarget.value);
-        }}
+        value={props.value}
+        setValue={props.setValue}
+        convert={convert}
+        render={render}
+        debounce={200}
       />
-      <Show when={error()}>{(e) => e}</Show>
     </>
   );
 };
