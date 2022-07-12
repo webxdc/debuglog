@@ -5,6 +5,16 @@ NOT IN A USABLE STATE YET!
 This is a special webxdc application that shows a searchable debuglog for
 deltachat events.
 
+## Usage
+
+You can search by event type, by timestamp range, and you can do a fulltext
+search on event, data1 and data2 together.
+
+Fulltext search supports the various capabilities of [Lunr
+search](https://lunrjs.com/guides/searching.html). Notable features are
+wildcard search, such as `imap*`, and field specific search such as as
+`data2:connected`.
+
 ## Development
 
 You can run `debuglog` in development mode like this:

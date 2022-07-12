@@ -53,7 +53,12 @@ const App: Component = () => {
         value={timestampRange}
         setValue={setTimestampRange}
       />
-      <TextInput value={fulltext} setValue={setFulltext} debounce={500} />
+      <TextInput
+        placeholder="Search"
+        value={fulltext}
+        setValue={setFulltext}
+        debounce={500}
+      />
       <Table columns={columns} data={events} />
     </div>
   );

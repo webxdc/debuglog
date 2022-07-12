@@ -11,6 +11,8 @@ release date when you use `npm version` (see `README.md`).
 
 - Filters for date ranges
 
+- Fulltext search
+
 ## [0.0.4][] - 2022-07-12
 
 ### Added
