@@ -34,7 +34,9 @@ function Table<T>(props: { columns: Column<T>[]; data: T[] }) {
       >
         <For each={props.columns}>
           {(column) => (
-            <div style={{ width: column.width }}>{column.label}</div>
+            <div class="TableHeadCell" style={{ width: column.width }}>
+              {column.label}
+            </div>
           )}
         </For>
       </div>

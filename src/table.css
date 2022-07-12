@@ -20,6 +20,12 @@
   text-overflow: ellipsis
 }
 
+.TableHeadCell {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold
+}
 
 html {
   /* https://matthewjamestaylor.com/responsive-font-size */
