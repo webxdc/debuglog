@@ -29,8 +29,9 @@ below.
 ### Changelog
 
 This package maintains a changelog in `CHANGELOG.md` following the [Keep a
-Changelog](http://keepachangelog.com/en/1.0.0/) format. Please add entries in the [Unreleased] section when you make changes. The information in the changelog
-is also automatically published to the github releases page when you
+Changelog](http://keepachangelog.com/en/1.0.0/) format. Please add entries in
+the `[Unreleased]` section when you make changes. The information in the
+changelog is also automatically published to the github releases page when you
 make a release, see below.
 
 ### Making a release
