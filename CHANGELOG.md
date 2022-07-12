@@ -9,7 +9,7 @@ release date when you use `npm version` (see `README.md`).
 
 ### Added
 
-- Filters for date ranges
+- Filter for date ranges
 
 - Fulltext search
 
