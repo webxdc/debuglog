@@ -45,7 +45,7 @@ function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
         ref={scrollParentRef}
         class="Table"
         style={{
-          height: `100%`,
+          height: `90vh`,
           width: `100%`,
           overflow: "auto",
         }}
