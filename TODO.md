@@ -24,6 +24,11 @@
 - Tooltip support in UI for ellipses items, and also for help
   on search boxes.
 
+## Branches
+
+- There are various deltachat branches - core, desktop, android. What's
+  required to merge them?
+
 ## Performance
 
 - When a new event comes in, recalculating the fulltext index is very
