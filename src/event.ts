@@ -164,3 +164,7 @@ export const eventDeclarations: EventDeclarations = {
     data2: WEBXDC_SERIAL_FIELD,
   },
 };
+
+export function eventTypes() {
+  return Object.keys(eventDeclarations);
+}

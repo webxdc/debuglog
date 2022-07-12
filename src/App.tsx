@@ -1,8 +1,9 @@
-import { Component } from "solid-js";
+import { Component, createSignal } from "solid-js";
 
 import Table, { Column } from "./Table";
+import EventTypeFilter from "./EventTypeFilter";
 import { DeltaChatEvent } from "./event";
-import { randomEvents } from "./fake-event";
+import { searchEvents } from "./store";
 
 const columns: Column<DeltaChatEvent>[] = [
   {
@@ -27,12 +28,15 @@ const columns: Column<DeltaChatEvent>[] = [
   },
 ];
 
-const events = randomEvents(new Date(Date.now()), 1000);
-
 const App: Component = () => {
+  const [eventType, setEventType] = createSignal<string | undefined>(undefined);
   return (
     <div>
-      <Table columns={columns} data={events} />
+      <EventTypeFilter eventType={eventType} setEventType={setEventType} />
+      <Table
+        columns={columns}
+        data={searchEvents({ eventType: eventType() })}
+      />
     </div>
   );
 };
