@@ -2,7 +2,7 @@
 
 ## Webxdc
 
-- `manifest.toml`
+- `icon.jpg` or `icon.png`
 
 ## Search
 
