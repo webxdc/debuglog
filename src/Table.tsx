@@ -11,6 +11,8 @@ export type Column<T> = {
 };
 
 function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
+  // it's important for this ref not to be height 100% as
+  // this breaks virtualizer
   let scrollParentRef: HTMLDivElement | undefined;
 
   const rowVirtualizer = createMemo(() =>
