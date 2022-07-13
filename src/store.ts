@@ -1,4 +1,4 @@
-import { createMemo } from "solid-js";
+import { createMemo, createRoot } from "solid-js";
 import { createStore } from "solid-js/store";
 import lunr from "lunr";
 
@@ -52,18 +52,20 @@ export function fulltextSearchEvents(fulltext: string): DeltaChatEvent[] {
 
 const idToEvent = new Map<number, DeltaChatEvent>();
 
-const fulltextIndex = createMemo(() =>
-  lunr((o) => {
-    o.ref("id");
-    o.field("event_type", { boost: 50 });
-    o.field("data1", { boost: 10 });
-    o.field("data2", { boost: 100 });
-    // XXX this will be very expensive if new events come in, so
-    // need to change strategy then
-    idToEvent.clear();
-    for (const event of events) {
-      idToEvent.set(event.id, event);
-      o.add(event);
-    }
-  })
+const fulltextIndex = createRoot(() =>
+  createMemo(() =>
+    lunr((o) => {
+      o.ref("id");
+      o.field("event_type", { boost: 50 });
+      o.field("data1", { boost: 10 });
+      o.field("data2", { boost: 100 });
+      // XXX this will be very expensive if new events come in, so
+      // need to change strategy then
+      idToEvent.clear();
+      for (const event of events) {
+        idToEvent.set(event.id, event);
+        o.add(event);
+      }
+    })
+  )
 );

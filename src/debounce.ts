@@ -1,5 +1,7 @@
 // based on https://gist.github.com/fr-ser/ded7690b245223094cd876069456ed6c
 
+import { createRoot } from "solid-js";
+
 export function debounce<F extends Function>(func: F, wait: number): F {
   let timeoutID: number;
 
@@ -12,8 +14,10 @@ export function debounce<F extends Function>(func: F, wait: number): F {
     clearTimeout(timeoutID);
     const context = this;
 
-    timeoutID = window.setTimeout(function () {
-      func.apply(context, args);
+    timeoutID = window.setTimeout(() => {
+      createRoot(() => {
+        func.apply(context, args);
+      });
     }, wait);
   };
 }
