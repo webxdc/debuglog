@@ -10,6 +10,8 @@
   automatically for numbers, or maybe for numbers too. What about wildcards if
   wildcards already are included?
 
+- See amount of search results
+
 ## UI
 
 - A way to copy/paste log data into the UI. For now, the desktop log.
