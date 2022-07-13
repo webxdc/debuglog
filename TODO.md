@@ -4,6 +4,8 @@
 
 - A spinner when search is initiated
 
+- Scroll back to the top when we search.
+
 - Automatically adding wildcards before each word in search? But not
   automatically for numbers, or maybe for numbers too. What about wildcards if
   wildcards already are included?
