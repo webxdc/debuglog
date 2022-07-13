@@ -10,6 +10,26 @@ export type Column<T> = {
   render: Component<{ value: T }>;
 };
 
+function Cell<T>(props: {
+  column: Column<T>;
+  data: Accessor<T[]>;
+  index: number;
+}) {
+  const rendered = createMemo(() =>
+    props.column.render({ value: props.data()[props.index] })
+  );
+  return (
+    <div
+      class="TableCell"
+      style={{
+        width: props.column.width,
+      }}
+    >
+      {rendered()}
+    </div>
+  );
+}
+
 function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
   // it's important for this ref not to be height 100% as
   // this breaks virtualizer
@@ -86,16 +106,11 @@ function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
                   >
                     <For each={props.columns}>
                       {(column) => (
-                        <div
-                          class="TableCell"
-                          style={{
-                            width: column.width,
-                          }}
-                        >
-                          {column.render({
-                            value: props.data()[virtualItem.index],
-                          })}
-                        </div>
+                        <Cell
+                          data={props.data}
+                          column={column}
+                          index={virtualItem.index}
+                        />
                       )}
                     </For>
                   </div>

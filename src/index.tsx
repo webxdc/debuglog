@@ -1,8 +1,8 @@
 /* @refresh reload */
 import "the-new-css-reset/css/reset.css";
-import "./index.css";
-
 import { render } from "solid-js/web";
+
+import "./index.css";
 
 import App from "./App";
 

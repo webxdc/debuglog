@@ -12,10 +12,13 @@ input:not([type=submit]):not([type=file]) {
     border: 2px solid #eee;
     border-radius: 10px;
     /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
- }
+}
 
  .btn {
     border-width: 1px;
     padding: 5px;
     border-style: solid;
-  }
+}
+
+
+  
