@@ -7,6 +7,16 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## Added
+
+- You can now copy & paste a DeltaChat desktop log file (View menu -> Developer
+  -> Open Current Logfile) into the UI and it will automatically add this. This
+  allows you to experiment with more realistic data.
+
+- There are buttons to create varying amounts of fake data.
+
+- Search is by wildcard by default.
+
 ## Removed
 
 - Event type filter

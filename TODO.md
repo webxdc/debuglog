@@ -12,13 +12,6 @@
 
 - See amount of search results
 
-## UI
-
-- A way to copy/paste log data into the UI. For now, the desktop log.
-
-- Desktop file: filter core/event and map DC_EVENT_INFO to Info (though not
-  strictly necessary). It uses tabs to separate files.
-
 ## Layout
 
 - Proper layout of ConverterInput error messages.
