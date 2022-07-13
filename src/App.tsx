@@ -13,6 +13,7 @@ import { DeltaChatEvent } from "./event";
 import { randomEvents } from "./fake-event";
 import { searchEvents, TimestampRange, setEvents } from "./store";
 import { parse } from "./dc-desktop-log";
+import EventInfo from "./EventInfo";
 
 const columns: Column<DeltaChatEvent>[] = [
   {
@@ -113,7 +114,7 @@ const App: Component = () => {
           Fake 100k
         </button>
       </div>
-      <Table columns={columns} data={events} />
+      <Table columns={columns} data={events} infoModal={EventInfo} />
     </div>
   );
 };

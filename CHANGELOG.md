@@ -17,6 +17,9 @@ release date when you use `npm version` (see `README.md`).
 
 - Search is by wildcard by default.
 
+- You can click on a row to open information in a modal in case the text
+  doesn't fit on your screen.
+
 - Tweaked column layout; data2 gets more space now as it can contain text.
 
 ## Removed

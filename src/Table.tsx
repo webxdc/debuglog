@@ -1,7 +1,14 @@
-import { JSX, Component, For, Accessor, createMemo } from "solid-js";
+import {
+  createSignal,
+  Component,
+  For,
+  Accessor,
+  createMemo,
+  Setter,
+} from "solid-js";
 
 import { createVirtualizer } from "./solid-virtual";
-
+import { createOpen } from "./Modal";
 import "./table.css";
 
 export type Column<T> = {
@@ -10,14 +17,41 @@ export type Column<T> = {
   render: Component<{ value: T }>;
 };
 
-function Cell<T>(props: {
-  column: Column<T>;
+function Row<T>(props: {
+  columns: Column<T>[];
   data: Accessor<T[]>;
   index: number;
+  onSelect: (value: Accessor<T | undefined>) => void;
 }) {
-  const rendered = createMemo(() =>
-    props.column.render({ value: props.data()[props.index] })
+  const value = createMemo(() => {
+    return props.data()[props.index];
+  });
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        "flex-direction": "row",
+        "justify-content": "flex-start",
+        gap: "10px",
+      }}
+      onClick={() => {
+        props.onSelect(value);
+      }}
+    >
+      <For each={props.columns}>
+        {(column) => <Cell value={value} column={column} />}
+      </For>
+    </div>
   );
+}
+
+function Cell<T>(props: { column: Column<T>; value: Accessor<T> }) {
+  const rendered = createMemo(() =>
+    props.column.render({ value: props.value() })
+  );
+
   return (
     <div
       class="TableCell"
@@ -30,7 +64,26 @@ function Cell<T>(props: {
   );
 }
 
-function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
+type InfoModal<T> = Component<{
+  value: Accessor<T | undefined>;
+  onClose: () => void;
+  isOpen: Accessor<boolean>;
+}>;
+
+function Table<T>(props: {
+  columns: Column<T>[];
+  data: Accessor<T[]>;
+  infoModal: InfoModal<T>;
+}) {
+  const { isOpen, onClose, onOpen } = createOpen();
+  const [selectedValue, setSelectedValue] = createSignal<T | undefined>(
+    undefined
+  );
+
+  const handleClose = () => {
+    setSelectedValue(undefined);
+    onClose();
+  };
   // it's important for this ref not to be height 100% as
   // this breaks virtualizer
   let scrollParentRef: HTMLDivElement | undefined;
@@ -46,6 +99,7 @@ function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
 
   return (
     <>
+      {props.infoModal({ value: selectedValue, onClose: handleClose, isOpen })}
       <div
         style={{
           width: "100%",
@@ -95,25 +149,15 @@ function Table<T>(props: { columns: Column<T>[]; data: Accessor<T[]> }) {
                     transform: `translateY(${virtualItem.start}px)`,
                   }}
                 >
-                  <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      "flex-direction": "row",
-                      "justify-content": "flex-start",
-                      gap: "10px",
+                  <Row
+                    data={props.data}
+                    columns={props.columns}
+                    index={virtualItem.index}
+                    onSelect={(value: Accessor<T | undefined>) => {
+                      onOpen();
+                      setSelectedValue(value);
                     }}
-                  >
-                    <For each={props.columns}>
-                      {(column) => (
-                        <Cell
-                          data={props.data}
-                          column={column}
-                          index={virtualItem.index}
-                        />
-                      )}
-                    </For>
-                  </div>
+                  />
                 </div>
               );
             }}

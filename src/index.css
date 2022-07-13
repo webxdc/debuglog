@@ -1,24 +1,56 @@
-
 html {
-    /* https://matthewjamestaylor.com/responsive-font-size */
-    font-size: calc(15px + 0.390625vw);
-    font-family: "Arial"
+  /* https://matthewjamestaylor.com/responsive-font-size */
+  font-size: calc(15px + 0.390625vw);
+  font-family: "Arial";
 }
 
-input:not([type=submit]):not([type=file]) {
-    /* https://css-tricks.com/styling-texty-inputs-only/ */
-    padding:10px;
-    /* border:0; */
-    border: 2px solid #eee;
-    border-radius: 10px;
-    /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
+input:not([type="submit"]):not([type="file"]) {
+  /* https://css-tricks.com/styling-texty-inputs-only/ */
+  padding: 10px;
+  /* border:0; */
+  border: 2px solid #eee;
+  border-radius: 10px;
+  /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
 }
 
- .btn {
-    border-width: 1px;
-    padding: 5px;
-    border-style: solid;
+.btn {
+  border-width: 1px;
+  padding: 5px;
+  border-style: solid;
 }
 
+#popup {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+}
 
-  
+#popup .popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  padding: 10px 20px;
+  background: #eee;
+}
+
+#popup a.close-popup {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.event-info-table {
+  width: 100%;
+  border: 1px;
+  margin: 2em;
+}

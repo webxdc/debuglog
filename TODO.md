@@ -1,5 +1,9 @@
 # Todo
 
+## Webxdc
+
+- `manifest.toml`
+
 ## Search
 
 - A spinner when search is initiated
@@ -14,6 +18,8 @@
 
 ## Layout
 
+- Better styling for `EventInfo`
+
 - Start & end time don't layout correctly on mobile.
 
 - Proper layout of ConverterInput error messages.
@@ -25,6 +31,17 @@
 
 - There are various deltachat branches - core, desktop, android. What's
   required to merge them?
+
+## Documentation
+
+- Blog post about concrete debuglog tech
+
+- Architecture explanation in docs
+
+# UI experiment
+
+- Search for a message by someone and discover the interactions around
+  a message.
 
 ## Performance
 
