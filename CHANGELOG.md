@@ -7,6 +7,8 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## [0.2.0][] - 2022-07-13
+
 ## Added
 
 - You can now copy & paste a DeltaChat desktop log file (View menu -> Developer
@@ -53,3 +55,7 @@ Initial public release.
 [0.0.4]: https://github.com/webxdc/debuglog/tree/v0.0.4
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/webxdc/debuglog/tree/v0.1.0
+
+
+[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/webxdc/debuglog/tree/v0.2.0
