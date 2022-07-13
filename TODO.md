@@ -18,7 +18,7 @@
 
 ## Layout
 
-- Better styling for `EventInfo`
+- Better styling for `EventInfo`, including proper close button.
 
 - Start & end time don't layout correctly on mobile.
 
