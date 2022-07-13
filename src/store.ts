@@ -1,5 +1,5 @@
 import { createMemo } from "solid-js";
-import { createStore, unwrap } from "solid-js/store";
+import { createStore } from "solid-js/store";
 import lunr from "lunr";
 
 import { DeltaChatEvent } from "./event";
@@ -63,14 +63,7 @@ const fulltextIndex = createMemo(() =>
     idToEvent.clear();
     for (const event of events) {
       idToEvent.set(event.id, event);
-      const cleaned = unwrap(event);
-      o.add({
-        id: cleaned.id,
-        ts: cleaned.ts,
-        event_type: cleaned.event_type,
-        data1: cleaned.data1,
-        data2: cleaned.data2,
-      });
+      o.add(event);
     }
   })
 );
