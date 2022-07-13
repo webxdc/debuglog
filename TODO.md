@@ -14,6 +14,8 @@
 
 ## Layout
 
+- Start & end time don't layout correctly on mobile.
+
 - Proper layout of ConverterInput error messages.
 
 - Tooltip support in UI for ellipses items, and also for help

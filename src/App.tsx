@@ -17,22 +17,22 @@ import { parse } from "./dc-desktop-log";
 const columns: Column<DeltaChatEvent>[] = [
   {
     label: "ts",
-    width: "20%",
+    width: "15%",
     render: (props) => new Date(props.value.ts).toISOString(),
   },
   {
     label: "event",
-    width: "30%",
+    width: "15%",
     render: (props) => props.value.event_type,
   },
   {
     label: "data1",
-    width: "30%",
+    width: "5%",
     render: (props) => props.value.data1,
   },
   {
     label: "data2",
-    width: "30%",
+    width: "55%",
     render: (props) => props.value.data2,
   },
 ];

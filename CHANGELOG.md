@@ -17,6 +17,8 @@ release date when you use `npm version` (see `README.md`).
 
 - Search is by wildcard by default.
 
+- Tweaked column layout; data2 gets more space now as it can contain text.
+
 ## Removed
 
 - Event type filter
