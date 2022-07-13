@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "@tanstack/virtual-core": "^3.0.0-alpha.1",
-    "fg-select-css": "^3.2.0",
     "lunr": "^2.3.9",
     "solid-js": "^1.4.6",
     "the-new-css-reset": "^1.7.2"

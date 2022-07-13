@@ -5,6 +5,7 @@ import ConverterInput, { ConverterResult } from "./ConverterInput";
 const DateInput: Component<{
   value: Accessor<Date | undefined>;
   setValue: Setter<Date | undefined>;
+  placeholder?: string;
 }> = (props) => {
   const render = (value: Date | undefined) => {
     return value != null ? value.toISOString() : "";
@@ -31,7 +32,7 @@ const DateInput: Component<{
   return (
     <>
       <ConverterInput
-        placeholder="Date"
+        placeholder={props.placeholder}
         value={props.value}
         setValue={props.setValue}
         convert={convert}

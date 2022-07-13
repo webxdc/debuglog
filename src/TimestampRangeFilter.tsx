@@ -29,8 +29,12 @@ const TimestampRangeFilter: Component<{
 
   return (
     <div style={{ display: "flex" }}>
-      <DateInput value={startDate} setValue={setStartDate} />
-      <DateInput value={endDate} setValue={setEndDate} />
+      <DateInput
+        value={startDate}
+        setValue={setStartDate}
+        placeholder="Start time"
+      />
+      <DateInput value={endDate} setValue={setEndDate} placeholder="End time" />
     </div>
   );
 };
