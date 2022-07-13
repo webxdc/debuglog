@@ -1,4 +1,10 @@
-import { Component, createSignal, createMemo } from "solid-js";
+import {
+  Component,
+  createSignal,
+  createMemo,
+  onMount,
+  onCleanup,
+} from "solid-js";
 
 import Table, { Column } from "./Table";
 import TimestampRangeFilter from "./TimestampRangeFilter";
@@ -6,6 +12,7 @@ import TextInput from "./TextInput";
 import { DeltaChatEvent } from "./event";
 import { randomEvents } from "./fake-event";
 import { searchEvents, TimestampRange, setEvents } from "./store";
+import { parse } from "./dc-desktop-log";
 
 const columns: Column<DeltaChatEvent>[] = [
   {
@@ -47,6 +54,25 @@ const App: Component = () => {
   const handleFake = (amount: number) => {
     setEvents(randomEvents(new Date(Date.now()), amount));
   };
+
+  const handlePaste = (ev: ClipboardEvent) => {
+    if (ev.clipboardData == null) {
+      console.error("No clipboardData");
+      return;
+    }
+    let data = ev.clipboardData.getData("text/plain");
+    console.log("Got clipboard data!");
+    console.log(parse(data));
+    setEvents(parse(data));
+  };
+
+  onMount(() => {
+    document.addEventListener("paste", handlePaste);
+  });
+
+  onCleanup(() => {
+    document.removeEventListener("paste", handlePaste);
+  });
 
   return (
     <div>
