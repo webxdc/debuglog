@@ -2,8 +2,6 @@
 
 ## Search
 
-- Remove the filter for event as fulltext is enough.
-
 - A spinner when search is initiated
 
 - Automatically adding wildcards before each word in search? But not
@@ -32,4 +30,4 @@
 ## Performance
 
 - When a new event comes in, recalculating the fulltext index is very
-  important, so need to do this incrementally in the future.
+  expensive, so need to do this incrementally in the future.
