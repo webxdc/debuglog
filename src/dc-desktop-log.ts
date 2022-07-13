@@ -22,6 +22,7 @@ export function parse(log: string): DeltaChatEvent[] {
       data1,
       data2,
     });
+    id++;
   }
   return result;
 }

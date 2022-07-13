@@ -62,8 +62,16 @@ const App: Component = () => {
     }
     let data = ev.clipboardData.getData("text/plain");
     console.log("Got clipboard data!");
-    console.log(parse(data));
-    setEvents(parse(data));
+
+    let events: DeltaChatEvent[];
+
+    try {
+      events = parse(data);
+    } catch (e) {
+      console.error("Could not parse clipboard data, is it a DC desktop log?");
+      throw e;
+    }
+    setEvents(events);
   };
 
   onMount(() => {
@@ -89,6 +97,12 @@ const App: Component = () => {
         />
       </div>
       <div style={{ display: "flex", gap: "1em" }}>
+        <button class="btn" onClick={() => handleFake(10)}>
+          Fake 10
+        </button>
+        <button class="btn" onClick={() => handleFake(100)}>
+          Fake 100
+        </button>
         <button class="btn" onClick={() => handleFake(1000)}>
           Fake 1k
         </button>

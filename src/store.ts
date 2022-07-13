@@ -1,5 +1,5 @@
-import { createEffect } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createMemo } from "solid-js";
+import { createStore, unwrap } from "solid-js/store";
 import lunr from "lunr";
 
 import { DeltaChatEvent } from "./event";
@@ -38,24 +38,39 @@ export function searchEvents(search: Search): DeltaChatEvent[] {
 }
 
 export function fulltextSearchEvents(fulltext: string): DeltaChatEvent[] {
-  return fulltextIndex
-    .search(fulltext)
+  const terms = fulltext.split(" ");
+  return fulltextIndex()
+    .query((q) => {
+      for (const term of terms) {
+        q.term(term, {
+          wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING,
+        });
+      }
+    })
     .map((entry) => idToEvent.get(Number(entry.ref))!);
 }
 
 const idToEvent = new Map<number, DeltaChatEvent>();
 
-const fulltextIndex = lunr((o) => {
-  o.ref("id");
-  o.field("event_type", { boost: 50 });
-  o.field("data1", { boost: 10 });
-  o.field("data2", { boost: 100 });
-  // XXX this will be very expensive if new events come in, so
-  // need to change strategy then
-  createEffect(() => {
+const fulltextIndex = createMemo(() =>
+  lunr((o) => {
+    o.ref("id");
+    o.field("event_type", { boost: 50 });
+    o.field("data1", { boost: 10 });
+    o.field("data2", { boost: 100 });
+    // XXX this will be very expensive if new events come in, so
+    // need to change strategy then
+    idToEvent.clear();
     for (const event of events) {
       idToEvent.set(event.id, event);
-      o.add(event);
+      const cleaned = unwrap(event);
+      o.add({
+        id: cleaned.id,
+        ts: cleaned.ts,
+        event_type: cleaned.event_type,
+        data1: cleaned.data1,
+        data2: cleaned.data2,
+      });
     }
-  });
-});
+  })
+);
