@@ -1,12 +1,10 @@
+import { createEffect } from "solid-js";
 import { createStore } from "solid-js/store";
 import lunr from "lunr";
 
 import { DeltaChatEvent } from "./event";
-import { randomEvents } from "./fake-event";
-import { createEffect } from "solid-js";
 
 type Search = {
-  eventType?: string;
   timestampRange?: TimestampRange;
   fulltext?: string;
 };
@@ -18,7 +16,7 @@ export type TimestampRange = {
 
 const [events, setEvents] = createStore<DeltaChatEvent[]>([]);
 
-setEvents(randomEvents(new Date(Date.now()), 1000));
+export { setEvents };
 
 function inRange(timestampRange: TimestampRange, timestamp: number): boolean {
   return (
@@ -35,9 +33,7 @@ export function searchEvents(search: Search): DeltaChatEvent[] {
 
   return filteredEvents.filter(
     (event) =>
-      (search.eventType == null || event.event_type === search.eventType) &&
-      (search.timestampRange == null ||
-        inRange(search.timestampRange, event.ts))
+      search.timestampRange == null || inRange(search.timestampRange, event.ts)
   );
 }
 

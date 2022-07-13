@@ -4,7 +4,8 @@ import Table, { Column } from "./Table";
 import TimestampRangeFilter from "./TimestampRangeFilter";
 import TextInput from "./TextInput";
 import { DeltaChatEvent } from "./event";
-import { searchEvents, TimestampRange } from "./store";
+import { randomEvents } from "./fake-event";
+import { searchEvents, TimestampRange, setEvents } from "./store";
 
 const columns: Column<DeltaChatEvent>[] = [
   {
@@ -30,7 +31,6 @@ const columns: Column<DeltaChatEvent>[] = [
 ];
 
 const App: Component = () => {
-  const [eventType, setEventType] = createSignal<string | undefined>(undefined);
   const [timestampRange, setTimestampRange] = createSignal<TimestampRange>({
     start: null,
     end: null,
@@ -39,11 +39,14 @@ const App: Component = () => {
 
   const events = createMemo(() =>
     searchEvents({
-      eventType: eventType(),
       timestampRange: timestampRange(),
       fulltext: fulltext(),
     })
   );
+
+  const handleFake = (amount: number) => {
+    setEvents(randomEvents(new Date(Date.now()), amount));
+  };
 
   return (
     <div>
@@ -58,6 +61,17 @@ const App: Component = () => {
           value={timestampRange}
           setValue={setTimestampRange}
         />
+      </div>
+      <div style={{ display: "flex", gap: "1em" }}>
+        <button class="btn" onClick={() => handleFake(1000)}>
+          Fake 1k
+        </button>
+        <button class="btn" onClick={() => handleFake(10000)}>
+          Fake 10k
+        </button>
+        <button class="btn" onClick={() => handleFake(100000)}>
+          Fake 100k
+        </button>
       </div>
       <Table columns={columns} data={events} />
     </div>
