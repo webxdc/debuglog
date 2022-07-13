@@ -11,6 +11,8 @@ release date when you use `npm version` (see `README.md`).
 
 - `manifest.toml` for webxdc
 
+- `icon.jpg` for webxdc
+
 ## [0.2.0][] - 2022-07-13
 
 ## Added
