@@ -1,6 +1,7 @@
 /* @refresh reload */
-import "the-new-css-reset/css/reset.css";
+// import "the-new-css-reset/css/reset.css";
 import { render } from "solid-js/web";
+import "tailwindcss/tailwind.css";
 
 import "./index.css";
 

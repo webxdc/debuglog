@@ -3,6 +3,17 @@ import { Component, Accessor, Show } from "solid-js";
 import Modal from "./Modal";
 import { DeltaChatEvent } from "./event";
 
+const InfoRow: Component<{ label: string; value: any }> = (props) => {
+  return (
+    <tr>
+      <td class="w-1/12 font-semibold">{props.label}</td>
+      <td>
+        <p>{props.value}</p>
+      </td>
+    </tr>
+  );
+};
+
 const EventInfo: Component<{
   value: Accessor<DeltaChatEvent | undefined>;
   onClose: () => void;
@@ -12,26 +23,12 @@ const EventInfo: Component<{
     <Show when={props.value()}>
       {(value) => (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
-          <table class="event-info-table">
+          <table class="my-14 ml-10 w-full border">
             <tbody>
-              <tr>
-                <td style={{ width: "10%" }}>ts</td>
-                <td>{value.ts}</td>
-              </tr>
-              <tr>
-                <td>event</td>
-                <td>{value.event_type}</td>
-              </tr>
-              <tr>
-                <td>data1</td>
-                <td>{value.data1}</td>
-              </tr>
-              <tr>
-                <td>data2</td>
-                <td>
-                  <p>{value.data2}</p>
-                </td>
-              </tr>
+              <InfoRow label="ts" value={value.ts} />
+              <InfoRow label="event" value={value.event_type} />
+              <InfoRow label="data1" value={value.data1} />
+              <InfoRow label="data2" value={value.data2} />
             </tbody>
           </table>
         </Modal>

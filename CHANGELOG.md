@@ -13,6 +13,12 @@ release date when you use `npm version` (see `README.md`).
 
 - `icon.jpg` for webxdc
 
+## Changed
+
+- Changed styling from eclectic mix of CSS and inline styles to Tailwind.
+
+- More unified use of color in styling.
+
 ## [0.2.0][] - 2022-07-13
 
 ## Added

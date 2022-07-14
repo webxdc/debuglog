@@ -1,15 +1,7 @@
-import {
-  createSignal,
-  Component,
-  For,
-  Accessor,
-  createMemo,
-  Setter,
-} from "solid-js";
+import { createSignal, Component, For, Accessor, createMemo } from "solid-js";
 
 import { createVirtualizer } from "./solid-virtual";
 import { createOpen } from "./Modal";
-import "./table.css";
 
 export type Column<T> = {
   label: string;
@@ -29,13 +21,7 @@ function Row<T>(props: {
 
   return (
     <div
-      style={{
-        width: "100%",
-        display: "flex",
-        "flex-direction": "row",
-        "justify-content": "flex-start",
-        gap: "10px",
-      }}
+      class="flex w-full flex-row justify-start gap-2.5"
       onClick={() => {
         props.onSelect(value);
       }}
@@ -54,7 +40,7 @@ function Cell<T>(props: { column: Column<T>; value: Accessor<T> }) {
 
   return (
     <div
-      class="TableCell"
+      class="truncate"
       style={{
         width: props.column.width,
       }}
@@ -100,18 +86,10 @@ function Table<T>(props: {
   return (
     <>
       {props.infoModal({ value: selectedValue, onClose: handleClose, isOpen })}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          "flex-direction": "row",
-          "justify-content": "flex-start",
-          gap: "10px",
-        }}
-      >
+      <div class="flex w-full flex-row justify-start gap-2.5">
         <For each={props.columns}>
           {(column) => (
-            <div class="TableHeadCell" style={{ width: column.width }}>
+            <div class="truncate font-semibold" style={{ width: column.width }}>
               {column.label}
             </div>
           )}
@@ -119,32 +97,24 @@ function Table<T>(props: {
       </div>
       <div
         ref={scrollParentRef}
-        class="Table"
-        style={{
-          height: `87vh`,
-          width: `100%`,
-          overflow: "auto",
-        }}
+        class="h-[86vh] w-full max-w-full overflow-auto
+               border border-solid border-slate-200"
       >
         <div
+          class="relative w-full"
           style={{
             height: `${rowVirtualizer().getTotalSize()}px`,
-            width: "100%",
-            position: "relative",
           }}
         >
           <For each={rowVirtualizer().getVirtualItems()}>
             {(virtualItem) => {
               return (
                 <div
-                  class={
-                    virtualItem.index % 2 ? "TableItemOdd" : "TableItemEven"
-                  }
+                  class="absolute top-0 left-0 flex w-full items-center justify-center"
+                  classList={{
+                    "bg-slate-200": virtualItem.index % 2 === 0,
+                  }}
                   style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
                     height: `${virtualItem.size}px`,
                     transform: `translateY(${virtualItem.start}px)`,
                   }}

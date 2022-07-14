@@ -28,7 +28,7 @@ const TimestampRangeFilter: Component<{
   });
 
   return (
-    <div style={{ display: "flex" }}>
+    <div class="flex flex-row gap-1">
       <DateInput
         value={startDate}
         setValue={setStartDate}
