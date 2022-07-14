@@ -38,6 +38,10 @@
   message. This is hindered by the subset of events we get in the official
   logs.
 
+## webxdc-dev plugin
+
+- To send realistic data
+
 ## Performance
 
 - When a new event comes in, recalculating the fulltext index is very
