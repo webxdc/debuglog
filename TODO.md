@@ -6,10 +6,6 @@
 
 - Scroll back to the top when we search.
 
-- Automatically adding wildcards before each word in search? But not
-  automatically for numbers, or maybe for numbers too. What about wildcards if
-  wildcards already are included?
-
 - See amount of search results
 
 - See search context - look up UI for it
