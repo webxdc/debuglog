@@ -97,7 +97,7 @@ const App: Component = () => {
           setValue={setTimestampRange}
         />
       </div>
-      <div style={{ display: "flex", gap: "1em" }}>
+      <div style={{ display: "flex", gap: "0.5em" }}>
         <button class="btn" onClick={() => handleFake(10)}>
           Fake 10
         </button>
