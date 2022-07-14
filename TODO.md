@@ -1,9 +1,5 @@
 # Todo
 
-## Webxdc
-
-- `icon.jpg` or `icon.png`
-
 ## Search
 
 - A spinner when search is initiated
