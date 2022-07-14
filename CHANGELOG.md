@@ -7,6 +7,8 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## [0.3.0][] - 2022-07-14
+
 ## Added
 
 - `manifest.toml` for webxdc
@@ -69,3 +71,7 @@ Initial public release.
 [0.1.0]: https://github.com/webxdc/debuglog/tree/v0.1.0
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/webxdc/debuglog/tree/v0.2.0
+
+
+[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/webxdc/debuglog/tree/v0.3.0
