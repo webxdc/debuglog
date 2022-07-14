@@ -4,6 +4,7 @@ import {
   createMemo,
   onMount,
   onCleanup,
+  JSX,
 } from "solid-js";
 
 import Table, { Column } from "./Table";
@@ -37,6 +38,10 @@ const columns: Column<DeltaChatEvent>[] = [
     render: (props) => props.value.data2,
   },
 ];
+
+const Button: Component<JSX.IntrinsicElements["button"]> = (props) => {
+  return <button class="border-2 p-1 border-solid" {...props} />;
+};
 
 const App: Component = () => {
   const [timestampRange, setTimestampRange] = createSignal<TimestampRange>({
@@ -84,8 +89,8 @@ const App: Component = () => {
   });
 
   return (
-    <div>
-      <div style={{ display: "flex", gap: "1em" }}>
+    <div class="font-sans">
+      <div class="flex flex-row gap-4">
         <TextInput
           placeholder="Search"
           value={fulltext}
@@ -97,22 +102,12 @@ const App: Component = () => {
           setValue={setTimestampRange}
         />
       </div>
-      <div style={{ display: "flex", gap: "0.5em" }}>
-        <button class="btn" onClick={() => handleFake(10)}>
-          Fake 10
-        </button>
-        <button class="btn" onClick={() => handleFake(100)}>
-          Fake 100
-        </button>
-        <button class="btn" onClick={() => handleFake(1000)}>
-          Fake 1k
-        </button>
-        <button class="btn" onClick={() => handleFake(10000)}>
-          Fake 10k
-        </button>
-        <button class="btn" onClick={() => handleFake(100000)}>
-          Fake 100k
-        </button>
+      <div class="flex flex-row gap-2">
+        <Button onClick={() => handleFake(10)}>Fake 10</Button>
+        <Button onClick={() => handleFake(100)}>Fake 100</Button>
+        <Button onClick={() => handleFake(1000)}>Fake 1k</Button>
+        <Button onClick={() => handleFake(10000)}>Fake 10k</Button>
+        <Button onClick={() => handleFake(100000)}>Fake 100k</Button>
       </div>
       <Table columns={columns} data={events} infoModal={EventInfo} />
     </div>
