@@ -12,6 +12,8 @@
 
 - See amount of search results
 
+- See search context - look up UI for it
+
 ## Layout
 
 - Better styling for `EventInfo`, including proper close button.
@@ -36,8 +38,9 @@
 
 # UI experiment
 
-- Search for a message by someone and discover the interactions around
-  a message.
+- Search for a message by someone and discover the interactions around a
+  message. This is hindered by the subset of events we get in the official
+  logs.
 
 ## Performance
 
