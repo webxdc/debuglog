@@ -8,6 +8,8 @@
 
 - See amount of search results
 
+- Context button should clear fulltext otherwise it's not very useful
+
 - expand timestamp range on both ends in table
 
 - Clear button for timestamp range
