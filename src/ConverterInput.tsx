@@ -13,12 +13,8 @@ function ConverterInput<T>(props: {
   render: (value: T) => string;
   debounce?: number;
 }) {
-  const value = () => {
-    return props.render(props.value());
-  };
-
   const [error, setError] = createSignal<string | undefined>(undefined);
-  const [textValue, setTextValue] = createSignal(value());
+  const [textValue, setTextValue] = createSignal(props.render(props.value()));
 
   const setter = (text: string) => {
     const result = props.convert(textValue());
@@ -36,6 +32,10 @@ function ConverterInput<T>(props: {
 
   createEffect(() => {
     setValue(textValue());
+  });
+
+  createEffect(() => {
+    setTextValue(props.render(props.value()));
   });
 
   return (
