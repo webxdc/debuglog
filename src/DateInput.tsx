@@ -1,10 +1,10 @@
-import { Component, Accessor, Setter } from "solid-js";
+import { Component, Accessor } from "solid-js";
 
 import ConverterInput, { ConverterResult } from "./ConverterInput";
 
 const DateInput: Component<{
   value: Accessor<Date | undefined>;
-  setValue: Setter<Date | undefined>;
+  setValue: (date: Date | undefined) => void;
   placeholder?: string;
 }> = (props) => {
   const render = (value: Date | undefined) => {

@@ -18,6 +18,9 @@ release date when you use `npm version` (see `README.md`).
 
 - Close button in details popup.
 
+- Context button in details popup. This creates a 10 second timestamp range
+  around this event so you can see its context.
+
 ## Changed
 
 - Lots of layout tweaks

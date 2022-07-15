@@ -19,6 +19,8 @@ import { createOpen } from "./createOpen";
 import { AppContainer, Header, Content } from "./Layout";
 import Button from "./Button";
 
+const CONTEXT_TIME = 5000; // 5 seconds
+
 const columns: Column<DeltaChatEvent>[] = [
   {
     label: "ts",
@@ -81,6 +83,13 @@ const App: Component = () => {
     setEvents(events);
   };
 
+  const handleContext = (event: DeltaChatEvent) => {
+    setTimestampRange({
+      start: event.ts - CONTEXT_TIME,
+      end: event.ts + CONTEXT_TIME,
+    });
+  };
+
   onMount(() => {
     document.addEventListener("paste", handlePaste);
   });
@@ -123,7 +132,13 @@ const App: Component = () => {
         </div>
       </Header>
       <Content>
-        <Table columns={columns} data={events} infoModal={EventInfo} />
+        <Table
+          columns={columns}
+          data={events}
+          infoModal={(props) => (
+            <EventInfo {...props} onContext={handleContext} />
+          )}
+        />
       </Content>
     </AppContainer>
   );

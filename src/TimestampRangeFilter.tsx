@@ -1,10 +1,4 @@
-import {
-  Component,
-  Accessor,
-  Setter,
-  createSignal,
-  createEffect,
-} from "solid-js";
+import { Component, Accessor, Setter, createMemo } from "solid-js";
 
 import DateInput from "./DateInput";
 import { TimestampRange } from "./store";
@@ -13,19 +7,20 @@ const TimestampRangeFilter: Component<{
   value: Accessor<TimestampRange>;
   setValue: Setter<TimestampRange>;
 }> = (props) => {
-  const [startDate, setStartDate] = createSignal<Date | undefined>(
-    timestampToDate(props.value().start)
-  );
-  const [endDate, setEndDate] = createSignal<Date | undefined>(
-    timestampToDate(props.value().end)
-  );
-
-  createEffect(() => {
-    props.setValue({
-      start: dateToTimestamp(startDate()),
-      end: dateToTimestamp(endDate()),
-    });
-  });
+  const startDate = createMemo(() => timestampToDate(props.value().start));
+  const endDate = createMemo(() => timestampToDate(props.value().end));
+  const setStartDate = (date: Date | undefined) => {
+    props.setValue((prev) => ({
+      start: dateToTimestamp(date),
+      end: prev.end,
+    }));
+  };
+  const setEndDate = (date: Date | undefined) => {
+    props.setValue((prev) => ({
+      start: prev.start,
+      end: dateToTimestamp(date),
+    }));
+  };
 
   return (
     <div class="flex flex-row gap-1">

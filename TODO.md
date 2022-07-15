@@ -8,7 +8,9 @@
 
 - See amount of search results
 
-- See search context - look up UI for it
+- expand timestamp range on both ends in table
+
+- Clear button for timestamp range
 
 ## Layout
 

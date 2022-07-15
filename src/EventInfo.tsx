@@ -28,7 +28,15 @@ const EventInfo: Component<{
   value: Accessor<DeltaChatEvent | undefined>;
   onClose: () => void;
   isOpen: Accessor<boolean>;
+  onContext: (value: DeltaChatEvent) => void;
 }> = (props) => {
+  const handleContext = () => {
+    const value = props.value();
+    if (value != null) {
+      props.onContext(value);
+    }
+    props.onClose();
+  };
   return (
     <Show when={props.value()}>
       {(value) => (
@@ -37,7 +45,10 @@ const EventInfo: Component<{
             <div class="flex h-5/6 w-5/6 flex-col justify-between">
               <EventInfoContent value={value} />
               <div class="flex items-center justify-center">
-                <Button class="h-16 w-20" onClick={props.onClose}>
+                <Button class="h-16 w-64" onClick={handleContext}>
+                  Context
+                </Button>
+                <Button class="h-16 w-64" onClick={props.onClose}>
                   Close
                 </Button>
               </div>
