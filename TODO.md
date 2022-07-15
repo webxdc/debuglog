@@ -42,6 +42,8 @@
 
 - To send realistic data
 
+- Alternatively, build in a fake webxdc implementation in this instead.
+
 ## Performance
 
 - When a new event comes in, recalculating the fulltext index is very
