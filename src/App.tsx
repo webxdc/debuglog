@@ -21,23 +21,23 @@ import { createOpen } from "./createOpen";
 const columns: Column<DeltaChatEvent>[] = [
   {
     label: "ts",
-    width: "15%",
-    render: (props) => new Date(props.value.ts).toISOString(),
+    width: "18%",
+    render: (props) => new Date(props.record.ts).toISOString(),
   },
   {
     label: "event",
     width: "15%",
-    render: (props) => props.value.event_type,
+    render: (props) => props.record.event_type,
   },
   {
     label: "data1",
     width: "5%",
-    render: (props) => props.value.data1,
+    render: (props) => props.record.data1,
   },
   {
     label: "data2",
-    width: "55%",
-    render: (props) => props.value.data2,
+    width: "52%",
+    render: (props) => props.record.data2,
   },
 ];
 
@@ -131,14 +131,14 @@ const App: Component = () => {
             value={timestampRange}
             setValue={setTimestampRange}
           />
+          <div class="flex flex-row gap-1">
+            <Button onClick={() => handleFake(10)}>Fake 10</Button>
+            <Button onClick={() => handleFake(100)}>Fake 100</Button>
+            <Button onClick={() => handleFake(1000)}>Fake 1k</Button>
+            <Button onClick={() => handleFake(10000)}>Fake 10k</Button>
+            <Button onClick={() => handleFake(100000)}>Fake 100k</Button>
+          </div>
         </Show>
-      </div>
-      <div class="flex flex-row gap-1">
-        <Button onClick={() => handleFake(10)}>Fake 10</Button>
-        <Button onClick={() => handleFake(100)}>Fake 100</Button>
-        <Button onClick={() => handleFake(1000)}>Fake 1k</Button>
-        <Button onClick={() => handleFake(10000)}>Fake 10k</Button>
-        <Button onClick={() => handleFake(100000)}>Fake 100k</Button>
       </div>
       <Table columns={columns} data={events} infoModal={EventInfo} />
     </div>

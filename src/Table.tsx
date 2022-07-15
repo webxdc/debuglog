@@ -6,7 +6,7 @@ import { createOpen } from "./createOpen";
 export type Column<T> = {
   label: string;
   width: string;
-  render: Component<{ value: T }>;
+  render: Component<{ record: T }>;
 };
 
 function Row<T>(props: {
@@ -35,7 +35,7 @@ function Row<T>(props: {
 
 function Cell<T>(props: { column: Column<T>; value: Accessor<T> }) {
   const rendered = createMemo(() =>
-    props.column.render({ value: props.value() })
+    props.column.render({ record: props.value() })
   );
 
   return (
