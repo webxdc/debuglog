@@ -17,6 +17,7 @@ import { searchEvents, TimestampRange, setEvents } from "./store";
 import { parse } from "./dc-desktop-log";
 import EventInfo from "./EventInfo";
 import { createOpen } from "./createOpen";
+import { Container, Header, Content } from "./Layout";
 
 const columns: Column<DeltaChatEvent>[] = [
   {
@@ -110,38 +111,42 @@ const App: Component = () => {
   });
 
   return (
-    <div class="flex flex-col gap-1 font-sans">
-      <div class="flex flex-col gap-2 bg-slate-200 px-2 py-2">
-        <div class="flex flex-row gap-2 bg-slate-200">
-          <TextInput
-            placeholder="Search"
-            value={fulltext}
-            setValue={setFulltext}
-            debounce={500}
-          />
-          <Show
-            when={!isOpen()}
-            fallback={<Button onClick={onClose}>Less</Button>}
-          >
-            <Button onClick={onOpen}>More</Button>
+    <Container class="gap-1 font-sans">
+      <Header>
+        <div class="flex flex-col gap-2 bg-slate-200 px-2 py-2">
+          <div class="flex flex-row gap-2 bg-slate-200">
+            <TextInput
+              placeholder="Search"
+              value={fulltext}
+              setValue={setFulltext}
+              debounce={500}
+            />
+            <Show
+              when={!isOpen()}
+              fallback={<Button onClick={onClose}>Less</Button>}
+            >
+              <Button onClick={onOpen}>More</Button>
+            </Show>
+          </div>
+          <Show when={isOpen()}>
+            <TimestampRangeFilter
+              value={timestampRange}
+              setValue={setTimestampRange}
+            />
+            <div class="flex flex-row gap-1">
+              <Button onClick={() => handleFake(10)}>Fake 10</Button>
+              <Button onClick={() => handleFake(100)}>Fake 100</Button>
+              <Button onClick={() => handleFake(1000)}>Fake 1k</Button>
+              <Button onClick={() => handleFake(10000)}>Fake 10k</Button>
+              <Button onClick={() => handleFake(100000)}>Fake 100k</Button>
+            </div>
           </Show>
         </div>
-        <Show when={isOpen()}>
-          <TimestampRangeFilter
-            value={timestampRange}
-            setValue={setTimestampRange}
-          />
-          <div class="flex flex-row gap-1">
-            <Button onClick={() => handleFake(10)}>Fake 10</Button>
-            <Button onClick={() => handleFake(100)}>Fake 100</Button>
-            <Button onClick={() => handleFake(1000)}>Fake 1k</Button>
-            <Button onClick={() => handleFake(10000)}>Fake 10k</Button>
-            <Button onClick={() => handleFake(100000)}>Fake 100k</Button>
-          </div>
-        </Show>
-      </div>
-      <Table columns={columns} data={events} infoModal={EventInfo} />
-    </div>
+      </Header>
+      <Content>
+        <Table columns={columns} data={events} infoModal={EventInfo} />
+      </Content>
+    </Container>
   );
 };
 

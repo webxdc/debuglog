@@ -7,6 +7,13 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## Added
+
+- A "More" button that lets you see more search options plus the fake data
+  buttons.
+
+- The table height now properly fills the rest of the screen.
+
 ## [0.3.0][] - 2022-07-14
 
 ## Added
@@ -71,7 +78,5 @@ Initial public release.
 [0.1.0]: https://github.com/webxdc/debuglog/tree/v0.1.0
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/webxdc/debuglog/tree/v0.2.0
-
-
-[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/webxdc/debuglog/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/webxdc/debuglog/tree/v0.3.0

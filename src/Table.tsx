@@ -84,7 +84,7 @@ function Table<T>(props: {
   );
 
   return (
-    <>
+    <div class="flex h-full flex-col">
       {props.infoModal({ value: selectedValue, onClose: handleClose, isOpen })}
       <div class="flex w-full flex-row justify-start gap-2.5">
         <For each={props.columns}>
@@ -97,7 +97,7 @@ function Table<T>(props: {
       </div>
       <div
         ref={scrollParentRef}
-        class="h-[86vh] w-full max-w-full overflow-auto
+        class="w-full max-w-full overflow-y-auto
                border border-solid border-slate-200"
       >
         <div
@@ -134,7 +134,7 @@ function Table<T>(props: {
           </For>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
