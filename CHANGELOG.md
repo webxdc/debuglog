@@ -7,6 +7,8 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## [0.4.0][] - 2022-07-15
+
 ## Added
 
 - A "More" button that lets you see more search options plus the fake data
@@ -91,3 +93,7 @@ Initial public release.
 [0.2.0]: https://github.com/webxdc/debuglog/tree/v0.2.0
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/webxdc/debuglog/tree/v0.3.0
+
+
+[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/webxdc/debuglog/tree/v0.4.0
