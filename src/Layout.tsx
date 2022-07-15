@@ -5,7 +5,9 @@ import { mergeProps, JSX } from "solid-js";
 // the top answer was refined in https://jsfiddle.net/ot7wd3pe/3/
 
 export function Container(props: JSX.HTMLAttributes<HTMLDivElement>) {
-  props = mergeProps(props, { class: `${props.class} flex h-screen flex-col` });
+  props = mergeProps(props, {
+    class: `${props.class || ""} flex h-screen flex-col`,
+  });
   return <div {...props} />;
 }
 
