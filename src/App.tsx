@@ -40,7 +40,7 @@ const columns: Column<DeltaChatEvent>[] = [
 ];
 
 const Button: Component<JSX.IntrinsicElements["button"]> = (props) => {
-  return <button class="border-2 p-1 border-solid" {...props} />;
+  return <button class="border-2 border-solid p-1" {...props} />;
 };
 
 const App: Component = () => {
