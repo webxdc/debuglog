@@ -16,6 +16,12 @@ release date when you use `npm version` (see `README.md`).
 
 - Removed now unused CSS reset dependency; this is now done by tailwind.
 
+- Close button in details popup.
+
+## Changed
+
+- Lots of layout tweaks
+
 ## [0.3.0][] - 2022-07-14
 
 ## Added
