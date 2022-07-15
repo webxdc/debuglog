@@ -14,6 +14,8 @@ release date when you use `npm version` (see `README.md`).
 
 - The table height now properly fills the rest of the screen.
 
+- Removed now unused CSS reset dependency; this is now done by tailwind.
+
 ## [0.3.0][] - 2022-07-14
 
 ## Added
