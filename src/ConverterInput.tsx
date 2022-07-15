@@ -42,8 +42,9 @@ function ConverterInput<T>(props: {
     <>
       <input
         type="text"
-        class="rounded-lg border-2 border-solid border-slate-300
-               p-2.5 focus:border-slate-500 focus:outline-none"
+        class="block w-48 rounded-md border-gray-300 text-xs shadow-sm
+               focus:border-indigo-300 focus:ring focus:ring-indigo-200
+               focus:ring-opacity-50"
         placeholder={props.placeholder}
         value={textValue()}
         onInput={(ev) => {

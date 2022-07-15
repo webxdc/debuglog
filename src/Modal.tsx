@@ -1,4 +1,4 @@
-import { Show, Component, Accessor, createSignal, JSX } from "solid-js";
+import { Show, Component, Accessor, JSX } from "solid-js";
 import { Portal } from "solid-js/web";
 
 const Modal: Component<{
@@ -31,23 +31,5 @@ const Modal: Component<{
     </Portal>
   );
 };
-
-export function createOpen() {
-  const [isOpen, setIsOpen] = createSignal(false);
-
-  const onClose = () => {
-    setIsOpen(false);
-  };
-
-  const onOpen = () => {
-    setIsOpen(true);
-  };
-
-  return {
-    isOpen,
-    onOpen,
-    onClose,
-  };
-}
 
 export default Modal;

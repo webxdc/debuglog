@@ -33,6 +33,7 @@
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-typescript": "^7.16.7",
+    "@tailwindcss/forms": "^0.5.2",
     "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^27.5.0",
     "@types/lunr": "^2.3.4",

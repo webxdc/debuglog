@@ -1,7 +1,7 @@
 import { createSignal, Component, For, Accessor, createMemo } from "solid-js";
 
 import { createVirtualizer } from "./solid-virtual";
-import { createOpen } from "./Modal";
+import { createOpen } from "./createOpen";
 
 export type Column<T> = {
   label: string;
