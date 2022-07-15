@@ -1,5 +1,6 @@
 import { Show, Component, Accessor, JSX } from "solid-js";
 import { Portal } from "solid-js/web";
+import { AppContainer } from "./Layout";
 
 const Modal: Component<{
   isOpen: Accessor<boolean>;
@@ -8,26 +9,27 @@ const Modal: Component<{
 }> = (props) => {
   return (
     <Portal>
-      <Show when={props.isOpen()}>
-        <div
-          id="popup"
-          class="fixed top-0 left-0 h-screen w-screen "
-          classList={{ block: props.isOpen(), hidden: !props.isOpen() }}
-        >
+      <AppContainer>
+        <Show when={props.isOpen()}>
           <div
-            class="absolute top-1/2 left-1/2 h-screen
-                   w-screen -translate-x-1/2 -translate-y-1/2 bg-slate-200 py-2.5 pl-5"
+            class="fixed top-0 left-0 h-screen w-screen "
+            classList={{ block: props.isOpen(), hidden: !props.isOpen() }}
           >
-            {props.children}
-            <a
-              onClick={props.onClose}
-              class="absolute top-1 right-3 text-xl font-semibold no-underline"
+            <div
+              class="absolute top-1/2 left-1/2 h-screen
+                   w-screen -translate-x-1/2 -translate-y-1/2 bg-slate-200 py-2.5 pl-5"
             >
-              &times;
-            </a>
+              {props.children}
+              <a
+                onClick={props.onClose}
+                class="absolute top-1 right-3 font-semibold no-underline"
+              >
+                &times;
+              </a>
+            </div>
           </div>
-        </div>
-      </Show>
+        </Show>
+      </AppContainer>
     </Portal>
   );
 };

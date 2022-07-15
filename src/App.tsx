@@ -4,7 +4,6 @@ import {
   createMemo,
   onMount,
   onCleanup,
-  JSX,
   Show,
 } from "solid-js";
 
@@ -17,51 +16,31 @@ import { searchEvents, TimestampRange, setEvents } from "./store";
 import { parse } from "./dc-desktop-log";
 import EventInfo from "./EventInfo";
 import { createOpen } from "./createOpen";
-import { Container, Header, Content } from "./Layout";
+import { AppContainer, Header, Content } from "./Layout";
+import Button from "./Button";
 
 const columns: Column<DeltaChatEvent>[] = [
   {
     label: "ts",
-    width: "18%",
+    width: "20%",
     render: (props) => new Date(props.record.ts).toISOString(),
   },
   {
     label: "event",
-    width: "15%",
+    width: "20%",
     render: (props) => props.record.event_type,
   },
   {
     label: "data1",
-    width: "5%",
+    width: "10%",
     render: (props) => props.record.data1,
   },
   {
     label: "data2",
-    width: "52%",
+    width: "50%",
     render: (props) => props.record.data2,
   },
 ];
-
-const Button: Component<JSX.IntrinsicElements["button"]> = (props) => {
-  // class="mr-1 rounded-lg border border-blue-700 px-1 py-1
-  // text-center text-sm font-medium text-blue-700
-  // hover:bg-blue-800 hover:text-white focus:outline-none
-  // focus:ring-4 focus:ring-blue-300 dark:border-blue-500
-  // dark:text-blue-500 dark:hover:bg-blue-600 dark:hover:text-white
-  // dark:focus:ring-blue-800"
-
-  return (
-    <button
-      class="mr-1 rounded-lg border border-gray-200 bg-white py-1
-             px-1 text-sm font-medium text-gray-900 hover:bg-gray-100
-             hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4
-             focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800
-             dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white
-             dark:focus:ring-gray-700"
-      {...props}
-    />
-  );
-};
 
 const App: Component = () => {
   const [timestampRange, setTimestampRange] = createSignal<TimestampRange>({
@@ -111,7 +90,7 @@ const App: Component = () => {
   });
 
   return (
-    <Container class="gap-1 font-sans">
+    <AppContainer>
       <Header>
         <div class="flex flex-col gap-2 bg-slate-200 px-2 py-2">
           <div class="flex flex-row gap-2 bg-slate-200">
@@ -146,7 +125,7 @@ const App: Component = () => {
       <Content>
         <Table columns={columns} data={events} infoModal={EventInfo} />
       </Content>
-    </Container>
+    </AppContainer>
   );
 };
 
