@@ -39,6 +39,7 @@ function Row<T>(props: {
         props.onInfo(value);
       }}
       onContextMenu={() => {
+        // this should be a long-press on mobile
         props.onInfo(value);
       }}
     >
