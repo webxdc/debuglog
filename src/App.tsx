@@ -90,6 +90,18 @@ const App: Component = () => {
     });
   };
 
+  const [selectedEvent, setSelectedEvent] = createSignal<
+    DeltaChatEvent | undefined
+  >(undefined);
+
+  const isSelected = (value: DeltaChatEvent) => {
+    const selected = selectedEvent();
+    if (selectedEvent == null) {
+      return false;
+    }
+    return selected === value;
+  };
+
   onMount(() => {
     document.addEventListener("paste", handlePaste);
   });
@@ -138,6 +150,10 @@ const App: Component = () => {
           infoModal={(props) => (
             <EventInfo {...props} onContext={handleContext} />
           )}
+          onSelect={(value) => {
+            setSelectedEvent(value());
+          }}
+          isSelected={isSelected}
         />
       </Content>
     </AppContainer>

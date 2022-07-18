@@ -1,6 +1,6 @@
 import { createSignal, Component, For, Accessor, createMemo } from "solid-js";
 
-import { createVirtualizer } from "./solid-virtual";
+import { createVirtualizer, VirtualItem } from "./solid-virtual";
 import { createOpen } from "./createOpen";
 
 export type Column<T> = {
@@ -12,23 +12,38 @@ export type Column<T> = {
 function Row<T>(props: {
   columns: Column<T>[];
   data: Accessor<T[]>;
-  index: number;
+  virtualItem: VirtualItem<unknown>;
   onSelect: (value: Accessor<T | undefined>) => void;
+  onInfo: (value: Accessor<T | undefined>) => void;
+  isSelected: (value: T) => boolean;
 }) {
   const value = createMemo(() => {
-    return props.data()[props.index];
+    return props.data()[props.virtualItem.index];
   });
 
   return (
     <div
-      class="flex w-full flex-row justify-start gap-2.5"
+      class="absolute top-0 left-0 flex w-full items-center justify-center"
+      classList={{
+        "bg-slate-200": props.virtualItem.index % 2 === 0,
+        "bg-slate-400": props.isSelected(value()),
+      }}
+      style={{
+        height: `${props.virtualItem.size}px`,
+        transform: `translateY(${props.virtualItem.start}px)`,
+      }}
       onClick={() => {
         props.onSelect(value);
       }}
+      onDblClick={() => {
+        props.onInfo(value);
+      }}
     >
-      <For each={props.columns}>
-        {(column) => <Cell value={value} column={column} />}
-      </For>
+      <div class="flex w-full flex-row justify-start gap-2.5">
+        <For each={props.columns}>
+          {(column) => <Cell value={value} column={column} />}
+        </For>
+      </div>
     </div>
   );
 }
@@ -60,6 +75,8 @@ function Table<T>(props: {
   columns: Column<T>[];
   data: Accessor<T[]>;
   infoModal: InfoModal<T>;
+  onSelect: (value: Accessor<T | undefined>) => void;
+  isSelected: (record: T) => boolean;
 }) {
   const { isOpen, onClose, onOpen } = createOpen();
   const [selectedValue, setSelectedValue] = createSignal<T | undefined>(
@@ -84,7 +101,7 @@ function Table<T>(props: {
   );
 
   return (
-    <div class="flex h-full flex-col">
+    <div class="flex h-full select-none flex-col">
       {props.infoModal({ value: selectedValue, onClose: handleClose, isOpen })}
       <div class="flex w-full flex-row justify-start gap-2.5">
         <For each={props.columns}>
@@ -107,30 +124,19 @@ function Table<T>(props: {
           }}
         >
           <For each={rowVirtualizer().getVirtualItems()}>
-            {(virtualItem) => {
-              return (
-                <div
-                  class="absolute top-0 left-0 flex w-full items-center justify-center"
-                  classList={{
-                    "bg-slate-200": virtualItem.index % 2 === 0,
-                  }}
-                  style={{
-                    height: `${virtualItem.size}px`,
-                    transform: `translateY(${virtualItem.start}px)`,
-                  }}
-                >
-                  <Row
-                    data={props.data}
-                    columns={props.columns}
-                    index={virtualItem.index}
-                    onSelect={(value: Accessor<T | undefined>) => {
-                      onOpen();
-                      setSelectedValue(value);
-                    }}
-                  />
-                </div>
-              );
-            }}
+            {(virtualItem) => (
+              <Row
+                data={props.data}
+                columns={props.columns}
+                virtualItem={virtualItem}
+                onInfo={(value: Accessor<T | undefined>) => {
+                  onOpen();
+                  setSelectedValue(value);
+                }}
+                onSelect={props.onSelect}
+                isSelected={props.isSelected}
+              />
+            )}
           </For>
         </div>
       </div>
