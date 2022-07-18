@@ -5,11 +5,14 @@ import {
   Accessor,
   createMemo,
   createEffect,
-  onMount,
 } from "solid-js";
 
 import { createVirtualizer, VirtualItem } from "./solid-virtual";
 import { createOpen } from "./createOpen";
+
+// attempt to detect we're on a touch screen
+// https://stackdiary.com/detect-mobile-browser-javascript/
+const isMobile = window.matchMedia("(pointer:coarse)").matches;
 
 export type Column<T> = {
   label: string;
@@ -29,6 +32,14 @@ function Row<T>(props: {
     return props.data()[props.virtualItem.index];
   });
 
+  const handleContextMenu = isMobile
+    ? (e: MouseEvent) => {
+        e.preventDefault();
+        // this should be a long-press on mobile
+        props.onInfo(value());
+      }
+    : undefined;
+
   return (
     <div
       class="absolute top-0 left-0 flex w-full items-center justify-center"
@@ -46,10 +57,7 @@ function Row<T>(props: {
       onDblClick={() => {
         props.onInfo(value());
       }}
-      // onContextMenu={() => {
-      //   // this should be a long-press on mobile
-      //   props.onInfo(value());
-      // }}
+      onContextMenu={handleContextMenu}
     >
       <div class="flex w-full flex-row justify-start gap-2.5">
         <For each={props.columns}>
