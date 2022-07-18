@@ -20,6 +20,8 @@ release date when you use `npm version` (see `README.md`).
 - When you click the 'context' button in the event modal, you go back to the
   event table, unfiltered, scrolled to the event.
 
+- Show a count of the searched items in the UI.
+
 ## Fixed
 
 - Lunr wouldn't properly search if the term was passed in with uppercase

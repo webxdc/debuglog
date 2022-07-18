@@ -122,13 +122,16 @@ const App: Component = () => {
     <AppContainer>
       <Header>
         <div class="flex flex-col gap-2 bg-slate-200 px-2 py-2">
-          <div class="flex flex-row gap-2 bg-slate-200">
-            <TextInput
-              placeholder="Search"
-              value={fulltext}
-              setValue={setFulltext}
-              debounce={500}
-            />
+          <div class="flex flex-row justify-between gap-2 bg-slate-200">
+            <div class="flex w-1/2 flex-row justify-between">
+              <TextInput
+                placeholder="Search"
+                value={fulltext}
+                setValue={setFulltext}
+                debounce={500}
+              />
+              <div class="text-lg">{events().length}</div>
+            </div>
             <Show
               when={!isOpen()}
               fallback={<Button onClick={onClose}>Less</Button>}

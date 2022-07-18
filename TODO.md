@@ -4,8 +4,6 @@
 
 - A spinner when search is initiated
 
-- See amount of search results
-
 ## Data
 
 - `id` is now equivalent to index for scrolling purposes. So perhaps we should
