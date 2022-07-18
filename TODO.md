@@ -6,9 +6,6 @@
 
 - See amount of search results
 
-- Selected item is at the bottom after 'context', can it be in the middle or on
-  the top?
-
 ## Data
 
 - `id` is now equivalent to index for scrolling purposes. So perhaps we should
