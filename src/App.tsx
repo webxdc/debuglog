@@ -5,6 +5,8 @@ import {
   onMount,
   onCleanup,
   Show,
+  batch,
+  createEffect,
 } from "solid-js";
 
 import Table, { Column } from "./Table";
@@ -53,12 +55,29 @@ const App: Component = () => {
 
   const { isOpen, onOpen, onClose } = createOpen();
 
+  const [scroll, setScroll] = createSignal<
+    ((index: number) => void) | undefined
+  >(undefined);
+
   const events = createMemo(() =>
     searchEvents({
       timestampRange: timestampRange(),
       fulltext: fulltext(),
     })
   );
+
+  const scrollTo = (index: number) => {
+    const scrollFunc = scroll();
+    if (scrollFunc != null) {
+      scrollFunc(index);
+    }
+  };
+
+  createEffect(() => {
+    events();
+    // scroll to index 0 when events are filtered
+    scrollTo(0);
+  });
 
   const handleFake = (amount: number) => {
     setEvents(randomEvents(new Date(Date.now()), amount));
@@ -83,23 +102,12 @@ const App: Component = () => {
     setEvents(events);
   };
 
-  const handleContext = (event: DeltaChatEvent) => {
-    setTimestampRange({
-      start: event.ts - CONTEXT_TIME,
-      end: event.ts + CONTEXT_TIME,
+  const handleContext = (selected: DeltaChatEvent) => {
+    batch(() => {
+      setFulltext("");
+      setTimestampRange({ start: null, end: null });
     });
-  };
-
-  const [selectedEvent, setSelectedEvent] = createSignal<
-    DeltaChatEvent | undefined
-  >(undefined);
-
-  const isSelected = (value: DeltaChatEvent) => {
-    const selected = selectedEvent();
-    if (selectedEvent == null) {
-      return false;
-    }
-    return selected === value;
+    scrollTo(selected.id);
   };
 
   onMount(() => {
@@ -150,10 +158,9 @@ const App: Component = () => {
           infoModal={(props) => (
             <EventInfo {...props} onContext={handleContext} />
           )}
-          onSelect={(value) => {
-            setSelectedEvent(value());
+          setScroll={(scroll) => {
+            setScroll(() => scroll);
           }}
-          isSelected={isSelected}
         />
       </Content>
     </AppContainer>

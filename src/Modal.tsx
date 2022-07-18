@@ -9,8 +9,8 @@ const Modal: Component<{
 }> = (props) => {
   return (
     <Portal>
-      <AppContainer>
-        <Show when={props.isOpen()}>
+      <Show when={props.isOpen()}>
+        <AppContainer>
           <div
             class="fixed top-0 left-0 h-screen w-screen "
             classList={{ block: props.isOpen(), hidden: !props.isOpen() }}
@@ -28,8 +28,8 @@ const Modal: Component<{
               </a>
             </div>
           </div>
-        </Show>
-      </AppContainer>
+        </AppContainer>
+      </Show>
     </Portal>
   );
 };

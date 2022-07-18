@@ -1,4 +1,12 @@
-import { createSignal, Component, For, Accessor, createMemo } from "solid-js";
+import {
+  createSignal,
+  Component,
+  For,
+  Accessor,
+  createMemo,
+  createEffect,
+  onMount,
+} from "solid-js";
 
 import { createVirtualizer, VirtualItem } from "./solid-virtual";
 import { createOpen } from "./createOpen";
@@ -13,8 +21,8 @@ function Row<T>(props: {
   columns: Column<T>[];
   data: Accessor<T[]>;
   virtualItem: VirtualItem<unknown>;
-  onSelect: (value: Accessor<T | undefined>) => void;
-  onInfo: (value: Accessor<T | undefined>) => void;
+  onSelect: (value: T) => void;
+  onInfo: (value: T) => void;
   isSelected: (value: T) => boolean;
 }) {
   const value = createMemo(() => {
@@ -33,15 +41,15 @@ function Row<T>(props: {
         transform: `translateY(${props.virtualItem.start}px)`,
       }}
       onClick={() => {
-        props.onSelect(value);
+        props.onSelect(value());
       }}
       onDblClick={() => {
-        props.onInfo(value);
+        props.onInfo(value());
       }}
-      onContextMenu={() => {
-        // this should be a long-press on mobile
-        props.onInfo(value);
-      }}
+      // onContextMenu={() => {
+      //   // this should be a long-press on mobile
+      //   props.onInfo(value());
+      // }}
     >
       <div class="flex w-full flex-row justify-start gap-2.5">
         <For each={props.columns}>
@@ -69,28 +77,26 @@ function Cell<T>(props: { column: Column<T>; value: Accessor<T> }) {
   );
 }
 
-type InfoModal<T> = Component<{
-  value: Accessor<T | undefined>;
+export type InfoModalProps<T> = {
+  selected: Accessor<T | undefined>;
   onClose: () => void;
   isOpen: Accessor<boolean>;
-}>;
+};
+
+type InfoModal<T> = Component<InfoModalProps<T>>;
 
 function Table<T>(props: {
   columns: Column<T>[];
   data: Accessor<T[]>;
   infoModal: InfoModal<T>;
-  onSelect: (value: Accessor<T | undefined>) => void;
-  isSelected: (record: T) => boolean;
+  setScroll: (scroll: (index: number) => void) => void;
 }) {
   const { isOpen, onClose, onOpen } = createOpen();
-  const [selectedValue, setSelectedValue] = createSignal<T | undefined>(
-    undefined
-  );
 
   const handleClose = () => {
-    setSelectedValue(undefined);
     onClose();
   };
+
   // it's important for this ref not to be height 100% as
   // this breaks virtualizer
   let scrollParentRef: HTMLDivElement | undefined;
@@ -104,9 +110,39 @@ function Table<T>(props: {
     })
   );
 
+  createEffect(() => {
+    const virtualizer = rowVirtualizer();
+    props.setScroll((index) => {
+      virtualizer.scrollToIndex(index);
+    });
+  });
+
+  const [selected, setSelected] = createSignal<T | undefined>(undefined);
+
+  const handleSelect = (selected: T) => {
+    setSelected(() => selected);
+  };
+
+  const handleInfo = (selected: T) => {
+    setSelected(() => selected);
+    onOpen();
+  };
+
+  const isSelected = (record: T) => {
+    const current = selected();
+    if (current == null) {
+      return false;
+    }
+    return current === record;
+  };
+
   return (
     <div class="flex h-full select-none flex-col">
-      {props.infoModal({ value: selectedValue, onClose: handleClose, isOpen })}
+      {props.infoModal({
+        selected: selected,
+        onClose: handleClose,
+        isOpen,
+      })}
       <div class="flex w-full flex-row justify-start gap-2.5">
         <For each={props.columns}>
           {(column) => (
@@ -133,12 +169,9 @@ function Table<T>(props: {
                 data={props.data}
                 columns={props.columns}
                 virtualItem={virtualItem}
-                onInfo={(value: Accessor<T | undefined>) => {
-                  onOpen();
-                  setSelectedValue(value);
-                }}
-                onSelect={props.onSelect}
-                isSelected={props.isSelected}
+                onInfo={handleInfo}
+                onSelect={handleSelect}
+                isSelected={isSelected}
               />
             )}
           </For>
