@@ -4,26 +4,19 @@
 
 - A spinner when search is initiated
 
-- Scroll back to the top when we search.
-
 - See amount of search results
 
-- Context button should clear fulltext otherwise it's not very useful
+## Data
 
-- expand timestamp range on both ends in table
-
-- Clear button for timestamp range
+- `id` is now equivalent to index for scrolling purposes. So perhaps we should
+  call it `index`, or maintain a separate `index`?
 
 ## Layout
-
-- Better styling for `EventInfo`, including proper close button.
-
-- Start & end time don't layout correctly on mobile.
 
 - Proper layout of ConverterInput error messages.
 
 - Tooltip support in UI for ellipses items, and also for help
-  on search boxes.
+  on search boxes. But how does this work on mobile?
 
 ## Branches
 
