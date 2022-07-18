@@ -113,7 +113,7 @@ function Table<T>(props: {
   createEffect(() => {
     const virtualizer = rowVirtualizer();
     props.setScroll((index) => {
-      virtualizer.scrollToIndex(index);
+      virtualizer.scrollToIndex(index, { align: "center" });
     });
   });
 
