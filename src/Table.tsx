@@ -38,6 +38,9 @@ function Row<T>(props: {
       onDblClick={() => {
         props.onInfo(value);
       }}
+      onContextMenu={() => {
+        props.onInfo(value);
+      }}
     >
       <div class="flex w-full flex-row justify-start gap-2.5">
         <For each={props.columns}>

@@ -7,6 +7,14 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## Changed
+
+- Clicking/tapping once now results in a selected delta chat event in the
+  table.
+
+- Doubleclick/long press results in opening details for this delta chat event
+  in a modal.
+
 ## Fixed
 
 - Lunr wouldn't properly search if the term was passed in with uppercase
