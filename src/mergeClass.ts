@@ -5,10 +5,10 @@ export function mergeClass(
   if (a == null && b == null) {
     return a;
   }
-  if (a === null) {
+  if (a == null) {
     return b;
   }
-  if (b === null) {
+  if (b == null) {
     return a;
   }
   return `${a} ${b}`;

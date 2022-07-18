@@ -1,8 +1,9 @@
-import { Component, Accessor, Show } from "solid-js";
+import { Component, Show } from "solid-js";
 
 import Modal from "./Modal";
 import { DeltaChatEvent } from "./event";
 import Button from "./Button";
+import type { InfoModalProps } from "./Table";
 
 const InfoRow: Component<{ label: string; value: any }> = (props) => {
   return (
@@ -24,26 +25,25 @@ const EventInfoContent: Component<{ value: DeltaChatEvent }> = (props) => {
   );
 };
 
-const EventInfo: Component<{
-  value: Accessor<DeltaChatEvent | undefined>;
-  onClose: () => void;
-  isOpen: Accessor<boolean>;
-  onContext: (value: DeltaChatEvent) => void;
-}> = (props) => {
+function EventInfo<C>(
+  props: InfoModalProps<DeltaChatEvent> & {
+    onContext: (record: DeltaChatEvent) => void;
+  }
+) {
   const handleContext = () => {
-    const value = props.value();
-    if (value != null) {
-      props.onContext(value);
+    const selected = props.selected();
+    if (selected != null) {
+      props.onContext(selected);
     }
     props.onClose();
   };
   return (
-    <Show when={props.value()}>
-      {(value) => (
+    <Show when={props.selected()}>
+      {(selected) => (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
           <div class="flex h-full items-center justify-center">
             <div class="flex h-5/6 w-5/6 flex-col justify-between">
-              <EventInfoContent value={value} />
+              <EventInfoContent value={selected} />
               <div class="flex items-center justify-center">
                 <Button class="h-16 w-64" onClick={handleContext}>
                   Context
@@ -58,6 +58,6 @@ const EventInfo: Component<{
       )}
     </Show>
   );
-};
+}
 
 export default EventInfo;

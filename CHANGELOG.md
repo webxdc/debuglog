@@ -7,6 +7,21 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## Changed
+
+- Clicking/tapping once now results in a selected delta chat event in the
+  table.
+
+- Doubleclick results in opening details for this delta chat event
+  in a modal.
+
+- When you initiate a search, the scroll position is set to 0
+
+- When you click the 'context' button in the event modal, you go back to the
+  event table, unfiltered, scrolled to the event.
+
+- Show a count of the searched items in the UI.
+
 ## Fixed
 
 - Lunr wouldn't properly search if the term was passed in with uppercase
