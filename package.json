@@ -59,7 +59,8 @@
     "version-changelog": "^3.1.1",
     "vite": "^2.9.8",
     "vite-plugin-solid": "^2.2.6",
-    "webxdc-dev": "^0.15.1"
+    "webxdc-dev": "^0.15.1",
+    "webxdc-types": "^0.1.0"
   },
   "dependencies": {
     "@tanstack/virtual-core": "^3.0.0-alpha.1",
