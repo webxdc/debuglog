@@ -7,6 +7,11 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## Fixed
+
+- Lunr wouldn't properly search if the term was passed in with uppercase
+  letters. Now lowercase terms before we search with Lunr.
+
 ## [0.4.0][] - 2022-07-15
 
 ## Added
@@ -93,7 +98,5 @@ Initial public release.
 [0.2.0]: https://github.com/webxdc/debuglog/tree/v0.2.0
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/webxdc/debuglog/tree/v0.3.0
-
-
-[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/webxdc/debuglog/compare/v0.4.0...HEAD
 [0.4.0]: https://github.com/webxdc/debuglog/tree/v0.4.0

@@ -42,7 +42,7 @@ export function fulltextSearchEvents(fulltext: string): DeltaChatEvent[] {
   return fulltextIndex()
     .query((q) => {
       for (const term of terms) {
-        q.term(term, {
+        q.term(term.toLowerCase(), {
           wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING,
         });
       }
