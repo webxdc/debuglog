@@ -9,7 +9,7 @@ release date when you use `npm version` (see `README.md`).
 
 ## [0.5.0][] - 2022-07-19
 
-## Added
+### Added
 
 - The application now receives events through the webxdc API. Implemented a
   fake webxdc that can be used to add fake events. The Fake buttons now add
@@ -17,7 +17,7 @@ release date when you use `npm version` (see `README.md`).
   store manipulation which makes adding events about as fast as before, even
   though updates come in one by one through this protocol.
 
-## Changed
+### Changed
 
 - Clicking/tapping once now results in a selected delta chat event in the
   table.
@@ -33,14 +33,14 @@ release date when you use `npm version` (see `README.md`).
 
 - Show a count of the searched items in the UI.
 
-## Fixed
+### Fixed
 
 - Lunr wouldn't properly search if the term was passed in with uppercase
   letters. Now lowercase terms before we search with Lunr.
 
 ## [0.4.0][] - 2022-07-15
 
-## Added
+### Added
 
 - A "More" button that lets you see more search options plus the fake data
   buttons.
@@ -54,19 +54,19 @@ release date when you use `npm version` (see `README.md`).
 - Context button in details popup. This creates a 10 second timestamp range
   around this event so you can see its context.
 
-## Changed
+### Changed
 
 - Lots of layout tweaks
 
 ## [0.3.0][] - 2022-07-14
 
-## Added
+### Added
 
 - `manifest.toml` for webxdc
 
 - `icon.jpg` for webxdc
 
-## Changed
+### Changed
 
 - Changed styling from eclectic mix of CSS and inline styles to Tailwind.
 
@@ -74,7 +74,7 @@ release date when you use `npm version` (see `README.md`).
 
 ## [0.2.0][] - 2022-07-13
 
-## Added
+### Added
 
 - You can now copy & paste a DeltaChat desktop log file (View menu -> Developer
   -> Open Current Logfile) into the UI and it will automatically add this. This
@@ -89,7 +89,7 @@ release date when you use `npm version` (see `README.md`).
 
 - Tweaked column layout; data2 gets more space now as it can contain text.
 
-## Removed
+### Removed
 
 - Event type filter
 
@@ -126,7 +126,5 @@ Initial public release.
 [0.3.0]: https://github.com/webxdc/debuglog/tree/v0.3.0
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.4.0...HEAD
 [0.4.0]: https://github.com/webxdc/debuglog/tree/v0.4.0
-
-
-[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.5.0...HEAD
+[unreleased]: https://github.com/webxdc/debuglog/compare/v0.5.0...HEAD
 [0.5.0]: https://github.com/webxdc/debuglog/tree/v0.5.0
