@@ -20,6 +20,7 @@ import EventInfo from "./EventInfo";
 import { createOpen } from "./createOpen";
 import { AppContainer, Header, Content } from "./Layout";
 import Button from "./Button";
+import { fakeDb } from "./fake-webxdc";
 
 const CONTEXT_TIME = 5000; // 5 seconds
 
@@ -80,7 +81,7 @@ const App: Component = () => {
   });
 
   const handleFake = (amount: number) => {
-    setEvents(randomEvents(new Date(Date.now()), amount));
+    fakeDb.addPayloads(randomEvents(new Date(Date.now()), amount));
   };
 
   const handlePaste = (ev: ClipboardEvent) => {

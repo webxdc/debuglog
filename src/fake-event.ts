@@ -1,39 +1,31 @@
+import { Payload } from "./types";
 import {
   eventDeclarations,
   EventDeclarations,
   EventDeclaration,
   DeclarationField,
-  DeltaChatEvent,
 } from "./event";
 
 type EventDeclarationArray = [string, EventDeclaration][];
 
-export function randomEvents(
-  startTime: Date,
-  amount: number
-): DeltaChatEvent[] {
+export function randomEvents(startTime: Date, amount: number): Payload[] {
   const declarations = createEventDeclarationArray(eventDeclarations);
-  const result: DeltaChatEvent[] = [];
+  const result: Payload[] = [];
   let ts = startTime.getTime();
   for (let i = 0; i < amount; i++) {
-    result.push(randomEvent(declarations, i, ts));
+    result.push(randomEvent(declarations, ts));
     ts = ts + randomInt(1000);
   }
   return result;
 }
 
-function randomEvent(
-  declarations: EventDeclarationArray,
-  id: number,
-  ts: number
-): DeltaChatEvent {
+function randomEvent(declarations: EventDeclarationArray, ts: number): Payload {
   const [eventType, declaration] = declarations[randomInt(declarations.length)];
   return {
-    id,
     ts,
     event_type: eventType,
-    data1: randomField(declaration.data1),
-    data2: randomField(declaration.data2),
+    data1: randomData1Field(declaration.data1),
+    data2: randomData2Field(declaration.data2),
   };
 }
 
@@ -43,11 +35,22 @@ function createEventDeclarationArray(
   return Object.entries(declarations);
 }
 
-function randomField(
-  field: DeclarationField | undefined
-): string | number | undefined {
+function randomData1Field(field: DeclarationField | undefined): number | null {
   if (field == null) {
-    return undefined;
+    return null;
+  }
+  if (field.type === "int") {
+    return randomInt(1000);
+  } else {
+    throw new Error("Unknown field type");
+  }
+}
+
+function randomData2Field(
+  field: DeclarationField | undefined
+): string | number | null {
+  if (field == null) {
+    return null;
   }
   if (field.type === "string") {
     return randomChoice(["Alpha", "Beta", "Gamma", "Delta"]);

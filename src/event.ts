@@ -1,9 +1,7 @@
-export type DeltaChatEvent = {
+import { Payload } from "./types";
+
+export type DeltaChatEvent = Payload & {
   id: number;
-  ts: number;
-  event_type: string;
-  data1: string | number | undefined;
-  data2: string | number | undefined;
 };
 
 export type DeclarationField = {

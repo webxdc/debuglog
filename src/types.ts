@@ -1,6 +1,6 @@
 import { WebXdc } from "webxdc-types";
 
-type Payload = {
+export type Payload = {
   ts: number;
   event_type: string;
   data1: number | null;

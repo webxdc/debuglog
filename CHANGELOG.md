@@ -7,13 +7,22 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## Added
+
+- The application now receives events through the webxdc API. Implemented a
+  fake webxdc that can be used to add fake events. The Fake buttons now add
+  events instead of replacing them. Added events are batched to avoid repeated
+  store manipulation which makes adding events about as fast as before, even
+  though updates come in one by one through this protocol.
+
 ## Changed
 
 - Clicking/tapping once now results in a selected delta chat event in the
   table.
 
-- Doubleclick results in opening details for this delta chat event
-  in a modal.
+- Doubleclick results in opening details for this delta chat event in a modal.
+  Long tap on mobile should result in the same behavior, but that has to be
+  tested.
 
 - When you initiate a search, the scroll position is set to 0
 
