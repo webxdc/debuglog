@@ -7,6 +7,8 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## [0.5.0][] - 2022-07-19
+
 ## Added
 
 - The application now receives events through the webxdc API. Implemented a
@@ -124,3 +126,7 @@ Initial public release.
 [0.3.0]: https://github.com/webxdc/debuglog/tree/v0.3.0
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.4.0...HEAD
 [0.4.0]: https://github.com/webxdc/debuglog/tree/v0.4.0
+
+
+[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/webxdc/debuglog/tree/v0.5.0
