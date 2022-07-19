@@ -33,13 +33,8 @@
   message. This is hindered by the subset of events we get in the official
   logs.
 
-## webxdc-dev plugin
-
-- To send realistic data
-
-- Alternatively, build in a fake webxdc implementation in this instead.
-
 ## Performance
 
-- When a new event comes in, recalculating the fulltext index is very
-  expensive, so need to do this incrementally in the future.
+- When a new event comes in, recalculating the fulltext index is very expensive
+  but is unavoidable with lunr. The debounce strategy seems to have made it
+  tolerable for floods of updates.
