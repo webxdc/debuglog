@@ -7,8 +7,7 @@ deltachat events.
 
 ## Usage
 
-You can search by event type, by timestamp range, and you can do a fulltext
-search on event, data1 and data2 together.
+You can do a fulltext search on event, data1 and data2 together.
 
 Fulltext search searches by wildcard always. You can enter multiple search
 terms.
@@ -33,6 +32,32 @@ You can produce a `.xdc` file for testing purposes by using the `webxdc-build`
 npm script. A new file `debuglog.xdc` is generated in the project directory.
 Note that for official releases you should use the release procedure documented
 below.
+
+### Architecture
+
+This package uses [SolidJS](https://www.solidjs.com/), which feels much like
+React but with reactive state and better performance/bundle size. [SolidJS fits
+my brain.](https://blog.startifact.com/posts/solidjs-fits-my-brain/)
+
+The core of the state management system is in `src/store.ts`. This defines an
+in-memory store of events, and implements search, including full-text search
+using [lunr](https://lunrjs.com/). All known events are stored in here, though
+you don't see them all at the same time in the UI.
+
+`src/App.tsx` pulls the UI together. The styling is implemented using
+[Tailwind](https://tailwindcss.com/), a popular CSS utility library, which
+compiles only the CSS actually used in pages, so it's a dev dependency.
+Tailwind is controlled by `class` attributes in JSX.
+
+The most complex UI element is `Table`, which presents the UI table. This table
+is virtualized using [TanStack Virtual](https://tanstack.com/virtual/v3). This
+means it doesn't show all events, only the ones you've scrolled to.
+`src/solid-virtual.ts` contains the integration with SolidJS. This is code that
+will become part of a `@tanstack/solid-virtual` release in the future, and we
+can depend on that then.
+
+The webxdc integration is in `src/webxdc.ts`. It simply adds an id to each
+update and then adds them to the store.
 
 ### Changelog
 

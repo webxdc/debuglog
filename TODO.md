@@ -33,7 +33,12 @@
   message. This is hindered by the subset of events we get in the official
   logs.
 
-## Performance
+# Webxdc
+
+- Relying on serial is not going to work correctly for scrolling is serial
+  doesn't start with 0.
+
+# Performance
 
 - Pressing '100k' several times in mobile seems to crash things.
 
