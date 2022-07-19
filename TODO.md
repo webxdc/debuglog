@@ -25,18 +25,11 @@
 
 - Blog post about concrete debuglog tech
 
-- Architecture explanation in docs
-
 # UI experiment
 
 - Search for a message by someone and discover the interactions around a
   message. This is hindered by the subset of events we get in the official
   logs.
-
-# Webxdc
-
-- Relying on serial is not going to work correctly for scrolling is serial
-  doesn't start with 0.
 
 # Performance
 
