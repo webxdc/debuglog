@@ -11,8 +11,8 @@ release date when you use `npm version` (see `README.md`).
 
 - Architecture documentation in `README.md`
 
-- Use our own id counter so we can keep an incrementing id, needed for
-  scroll behavior.
+- Use our own id counter so we can keep an incrementing id, needed for scroll
+  behavior.
 
 ## [0.5.0][] - 2022-07-19
 
