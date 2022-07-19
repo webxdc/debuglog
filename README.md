@@ -57,7 +57,9 @@ will become part of a `@tanstack/solid-virtual` release in the future, and we
 can depend on that then.
 
 The webxdc integration is in `src/webxdc.ts`. It simply adds an id to each
-update and then adds them to the store.
+update and then adds them to the store. Adding data to the store is debounced
+for performance reasons - the SolidJS store responds much better when you add a
+large amount of events at the same time instead of one by one.
 
 ### Changelog
 
