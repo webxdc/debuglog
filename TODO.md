@@ -33,7 +33,8 @@
 
 # Performance
 
-- Pressing '100k' several times in mobile seems to crash things.
+- Pressing '100k' several times in mobile seems to crash things. Maybe only
+  when it's pressed multiple times as it doesn't give feedback.
 
 - When a new event comes in, recalculating the fulltext index is very expensive
   but is unavoidable with lunr. The debounce strategy seems to have made it
