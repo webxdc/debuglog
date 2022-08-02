@@ -14,6 +14,9 @@ release date when you use `npm version` (see `README.md`).
 - Use our own id counter so we can keep an incrementing id, needed for scroll
   behavior.
 
+- Actually include a `webxdc.js` in a script tag to load system webxdc if there
+  is no fake.
+
 ## [0.5.0][] - 2022-07-19
 
 ### Added
