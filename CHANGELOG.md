@@ -7,6 +7,8 @@ release date when you use `npm version` (see `README.md`).
 
 ## [Unreleased]
 
+## [0.6.0][] - 2022-08-02
+
 ### Added
 
 - Architecture documentation in `README.md`
@@ -138,3 +140,7 @@ Initial public release.
 [0.4.0]: https://github.com/webxdc/debuglog/tree/v0.4.0
 [unreleased]: https://github.com/webxdc/debuglog/compare/v0.5.0...HEAD
 [0.5.0]: https://github.com/webxdc/debuglog/tree/v0.5.0
+
+
+[Unreleased]: https://github.com/webxdc/debuglog/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/webxdc/debuglog/tree/v0.6.0
