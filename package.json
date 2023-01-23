@@ -1,7 +1,7 @@
 {
   "name": "debug_logging",
   "version": "0.6.0",
-  "description": "debug_logging for DeltaChat",
+  "description": "debug logging for DeltaChat",
   "keywords": [
     "webxdc",
     "deltachat"
