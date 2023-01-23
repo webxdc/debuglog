@@ -28,7 +28,11 @@ const columns: Column<DeltaChatEvent>[] = [
   {
     label: "ts",
     width: "20%",
-    render: (props) => new Date(props.record.ts).toISOString(),
+    render: (props) => {
+      let data = new Date(props.record.ts * 1000)
+      return `${data.toLocaleDateString()} <${data.toLocaleTimeString()}>`
+    }
+    ,
   },
   {
     label: "event",
@@ -36,14 +40,14 @@ const columns: Column<DeltaChatEvent>[] = [
     render: (props) => props.record.event_type,
   },
   {
-    label: "data1",
-    width: "10%",
-    render: (props) => props.record.data1,
-  },
-  {
     label: "data2",
     width: "50%",
     render: (props) => props.record.data2,
+  },
+  {
+    label: "data1",
+    width: "10%",
+    render: (props) => props.record.data1,
   },
 ];
 
@@ -100,7 +104,7 @@ const App: Component = () => {
       console.error("Could not parse clipboard data, is it a DC desktop log?");
       throw e;
     }
-    setEvents(events);
+    // setEvents(events);
   };
 
   const handleContext = (selected: DeltaChatEvent) => {

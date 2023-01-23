@@ -1,6 +1,9 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "types": ["jest", "@testing-library/jest-dom"],
+  "types": [
+    "jest",
+    "@testing-library/jest-dom"
+  ],
   "compilerOptions": {
     "strict": true,
     "target": "ESNext",
@@ -10,7 +13,9 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": ["vite/client"],
-    "isolatedModules": true
+    "types": [
+      "vite/client"
+    ],
+    "isolatedModules": true,
   }
 }
