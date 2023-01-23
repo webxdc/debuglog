@@ -104,7 +104,7 @@ const App: Component = () => {
       console.error("Could not parse clipboard data, is it a DC desktop log?");
       throw e;
     }
-    // setEvents(events);
+    setEvents(events);
   };
 
   const handleContext = (selected: DeltaChatEvent) => {
