@@ -13,7 +13,7 @@ import Table, { Column } from "./Table";
 import TimestampRangeFilter from "./TimestampRangeFilter";
 import TextInput from "./TextInput";
 import { DeltaChatEvent } from "./event";
-import { searchEvents, TimestampRange, setEvents } from "./store";
+import { searchEvents, TimestampRange, setEvents, addMockEvents } from "./store";
 import { parse } from "./dc-desktop-log";
 import EventInfo from "./EventInfo";
 import { createOpen } from "./createOpen";
@@ -131,12 +131,17 @@ const App: Component = () => {
               />
               <div class="text-lg">{events().length}</div>
             </div>
-            <Show
-              when={!isOpen()}
-              fallback={<Button onClick={onClose}>Less</Button>}
-            >
-              <Button onClick={onOpen}>More</Button>
-            </Show>
+            <div>
+              <Show when="import.meta.env.DEV">
+                <Button onClick={addMockEvents}>Load more events</Button>
+              </Show>
+              <Show
+                when={!isOpen()}
+                fallback={<Button onClick={onClose}>Less</Button>}
+              >
+                <Button onClick={onOpen}>More</Button>
+              </Show>
+            </div>
           </div>
           <Show when={isOpen()}>
             <TimestampRangeFilter

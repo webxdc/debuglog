@@ -5,6 +5,7 @@ import lunr from "lunr";
 import { DeltaChatEvent } from "./event";
 import { debounce } from "./debounce";
 import { Payload } from "./types";
+import sampleEvents from "./sampledata.json"
 
 type Search = {
   timestampRange?: TimestampRange;
@@ -100,6 +101,15 @@ const debouncedFlushEvents = debounce(() => {
   );
   eventsToAdd = [];
 }, 300);
+
+export function addMockEvents() {
+  setEvents(
+    produce((events) => {
+      let curr_index = events.length
+      events.push(...sampleEvents.map((payload, i) => { return { ...convert_to_dcevent(payload), id: curr_index + i } }));
+    })
+  );
+}
 
 export function addEvent(event: DeltaChatEvent): void {
   eventsToAdd.push(event);

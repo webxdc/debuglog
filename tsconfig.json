@@ -17,5 +17,6 @@
       "vite/client"
     ],
     "isolatedModules": true,
+    "resolveJsonModule": true,
   }
 }
