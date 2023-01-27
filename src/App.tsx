@@ -13,14 +13,12 @@ import Table, { Column } from "./Table";
 import TimestampRangeFilter from "./TimestampRangeFilter";
 import TextInput from "./TextInput";
 import { DeltaChatEvent } from "./event";
-import { randomEvents } from "./fake-event";
 import { searchEvents, TimestampRange, setEvents } from "./store";
 import { parse } from "./dc-desktop-log";
 import EventInfo from "./EventInfo";
 import { createOpen } from "./createOpen";
 import { AppContainer, Header, Content } from "./Layout";
 import Button from "./Button";
-import { fakeDb } from "./fake-webxdc";
 
 const CONTEXT_TIME = 5000; // 5 seconds
 
@@ -84,10 +82,6 @@ const App: Component = () => {
     scrollTo(0);
   });
 
-  const handleFake = (amount: number) => {
-    fakeDb.addPayloads(randomEvents(new Date(Date.now()), amount));
-  };
-
   const handlePaste = (ev: ClipboardEvent) => {
     if (ev.clipboardData == null) {
       console.error("No clipboardData");
@@ -149,13 +143,6 @@ const App: Component = () => {
               value={timestampRange}
               setValue={setTimestampRange}
             />
-            <div class="flex flex-row gap-1">
-              <Button onClick={() => handleFake(10)}>Fake 10</Button>
-              <Button onClick={() => handleFake(100)}>Fake 100</Button>
-              <Button onClick={() => handleFake(1000)}>Fake 1k</Button>
-              <Button onClick={() => handleFake(10000)}>Fake 10k</Button>
-              <Button onClick={() => handleFake(100000)}>Fake 100k</Button>
-            </div>
           </Show>
         </div>
       </Header>
