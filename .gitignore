@@ -1,3 +1,4 @@
 node_modules
 dist
 debug_logging.xdc
+pnpm-lock.yaml
