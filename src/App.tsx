@@ -13,14 +13,12 @@ import Table, { Column } from "./Table";
 import TimestampRangeFilter from "./TimestampRangeFilter";
 import TextInput from "./TextInput";
 import { DeltaChatEvent } from "./event";
-import { randomEvents } from "./fake-event";
-import { searchEvents, TimestampRange, setEvents } from "./store";
+import { searchEvents, TimestampRange, setEvents, addMockEvents } from "./store";
 import { parse } from "./dc-desktop-log";
 import EventInfo from "./EventInfo";
 import { createOpen } from "./createOpen";
 import { AppContainer, Header, Content } from "./Layout";
 import Button from "./Button";
-import { fakeDb } from "./fake-webxdc";
 
 const CONTEXT_TIME = 5000; // 5 seconds
 
@@ -28,7 +26,11 @@ const columns: Column<DeltaChatEvent>[] = [
   {
     label: "ts",
     width: "20%",
-    render: (props) => new Date(props.record.ts).toISOString(),
+    render: (props) => {
+      let data = new Date(props.record.ts * 1000)
+      return `${data.toLocaleDateString()} <${data.toLocaleTimeString()}>`
+    }
+    ,
   },
   {
     label: "event",
@@ -36,14 +38,14 @@ const columns: Column<DeltaChatEvent>[] = [
     render: (props) => props.record.event_type,
   },
   {
-    label: "data1",
-    width: "10%",
-    render: (props) => props.record.data1,
-  },
-  {
     label: "data2",
     width: "50%",
     render: (props) => props.record.data2,
+  },
+  {
+    label: "data1",
+    width: "10%",
+    render: (props) => props.record.data1,
   },
 ];
 
@@ -79,10 +81,6 @@ const App: Component = () => {
     // scroll to index 0 when events are filtered
     scrollTo(0);
   });
-
-  const handleFake = (amount: number) => {
-    fakeDb.addPayloads(randomEvents(new Date(Date.now()), amount));
-  };
 
   const handlePaste = (ev: ClipboardEvent) => {
     if (ev.clipboardData == null) {
@@ -133,25 +131,23 @@ const App: Component = () => {
               />
               <div class="text-lg">{events().length}</div>
             </div>
-            <Show
-              when={!isOpen()}
-              fallback={<Button onClick={onClose}>Less</Button>}
-            >
-              <Button onClick={onOpen}>More</Button>
-            </Show>
+            <div>
+              <Show when="import.meta.env.DEV">
+                <Button onClick={addMockEvents}>Load more events</Button>
+              </Show>
+              <Show
+                when={!isOpen()}
+                fallback={<Button onClick={onClose}>Less</Button>}
+              >
+                <Button onClick={onOpen}>More</Button>
+              </Show>
+            </div>
           </div>
           <Show when={isOpen()}>
             <TimestampRangeFilter
               value={timestampRange}
               setValue={setTimestampRange}
             />
-            <div class="flex flex-row gap-1">
-              <Button onClick={() => handleFake(10)}>Fake 10</Button>
-              <Button onClick={() => handleFake(100)}>Fake 100</Button>
-              <Button onClick={() => handleFake(1000)}>Fake 1k</Button>
-              <Button onClick={() => handleFake(10000)}>Fake 10k</Button>
-              <Button onClick={() => handleFake(100000)}>Fake 100k</Button>
-            </div>
           </Show>
         </div>
       </Header>

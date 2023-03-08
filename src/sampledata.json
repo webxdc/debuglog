@@ -1,0 +1,286 @@
+[
+  {
+    "event": {
+      "Info": "src/ephemeral.rs:549: Ephemeral loop waiting for deletion in 24h 0m 0s or interrupt"
+    },
+    "time": 1674485758
+  },
+  {
+    "event": {
+      "MsgsChanged": {
+        "chat_id": 10,
+        "msg_id": 19492
+      }
+    },
+    "time": 1674485758
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:430: smtp fake idle - interrupted"
+    },
+    "time": 1674485758
+  },
+  {
+    "event": {
+      "Info": "src/smtp.rs:89: Closing stale connection"
+    },
+    "time": 1674485758
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485758
+  },
+  {
+    "event": {
+      "SmtpConnected": "SMTP-LOGIN as xrxve@testrun.org ok"
+    },
+    "time": 1674485759
+  },
+  {
+    "event": {
+      "Info": "src/smtp.rs:417: Try number 1 to send message Msg#19492 over SMTP"
+    },
+    "time": 1674485759
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485759
+  },
+  {
+    "event": {
+      "SmtpMessageSent": "Message len=5623 was smtp-sent to xrxve@testrun.org"
+    },
+    "time": 1674485759
+  },
+  {
+    "event": {
+      "MsgDelivered": {
+        "chat_id": 10,
+        "msg_id": 19492
+      }
+    },
+    "time": 1674485759
+  },
+  {
+    "event": {
+      "Info": "src/smtp.rs:626: Sending MDNs"
+    },
+    "time": 1674485759
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:404: smtp fake idle - started"
+    },
+    "time": 1674485759
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485759
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:426: smtp has no messages to retry, waiting for interrupt"
+    },
+    "time": 1674485759
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:74: INBOX: Idle has NewData ResponseData { raw: 4096, response: MailboxData(Exists(488)) }"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/job.rs:353: loading job"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:836: 1 mails read from \"INBOX\"."
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "ImapMessageMoved": "IMAP messages 14568 moved to DeltaChat"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:299: IMAP session supports IDLE, using it."
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:1710: ignoring unsolicited response Recent(1)"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:1710: ignoring unsolicited response Other(ResponseData { raw: 4096, response: Data { status: Ok, code: Some(CopyUid(1652549367, [Uid(14568)], [Uid(29089)])), information: Some(\"Moved UIDs.\") } })"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:1710: ignoring unsolicited response Expunge(488)"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:1710: ignoring unsolicited response Recent(0)"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:59: INBOX: Idle entering wait-on-remote state"
+    },
+    "time": 1674485760
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:74: DeltaChat: Idle has NewData ResponseData { raw: 4096, response: MailboxData(Exists(29031)) }"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:89: INBOX: Idle wait was interrupted: InterruptInfo { probe_network: false }"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:836: 2 mails read from \"DeltaChat\"."
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/job.rs:353: loading job"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:299: IMAP session supports IDLE, using it."
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:59: DeltaChat: Idle entering wait-on-remote state"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:1086: Marked messages 29089,29089:29090 in folder DeltaChat as seen."
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:700: No new emails in folder INBOX"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:299: IMAP session supports IDLE, using it."
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:37: skip idle, got interrupt InterruptInfo { probe_network: false }"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/job.rs:353: loading job"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/job.rs:353: loading job"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:836: 0 mails read from \"INBOX\"."
+    },
+    "time": 1674485761
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:299: IMAP session supports IDLE, using it."
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:59: INBOX: Idle entering wait-on-remote state"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:74: DeltaChat: Idle has NewData ResponseData { raw: 4096, response: Fetch(29030, [ModSeq(24828), Flags([\"\\\\Seen\"])]) }"
+    },
+    "time": 1674485761
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:836: 0 mails read from \"DeltaChat\"."
+    },
+    "time": 1674485762
+  },
+  {
+    "event": "ConnectivityChanged",
+    "time": 1674485762
+  },
+  {
+    "event": {
+      "Info": "src/scheduler.rs:299: IMAP session supports IDLE, using it."
+    },
+    "time": 1674485762
+  },
+  {
+    "event": {
+      "Info": "src/imap.rs:1710: ignoring unsolicited response Other(ResponseData { raw: 4096, response: Fetch(29031, [ModSeq(24828), Flags([\"\\\\Seen\"])]) })"
+    },
+    "time": 1674485762
+  },
+  {
+    "event": {
+      "Info": "src/imap/idle.rs:59: DeltaChat: Idle entering wait-on-remote state"
+    },
+    "time": 1674485762
+  }
+]

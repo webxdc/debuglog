@@ -1,7 +1,7 @@
 {
-  "name": "debuglog",
+  "name": "debuglg",
   "version": "0.6.0",
-  "description": "Debuglog for DeltaChat",
+  "description": "debug logging for DeltaChat",
   "keywords": [
     "webxdc",
     "deltachat"
@@ -20,8 +20,8 @@
     "dev": "vite",
     "webxdc-dev": "concurrently \"npm run dev\" \"webxdc-dev run http://localhost:3000\"",
     "build": "vite build",
-    "webxdc-build": "npm run build && rimraf ./debuglog.xdc && cd dist && bestzip --level 9 ../debuglog.xdc *",
-    "webxdc-dev-xdc": "npm run webxdc-build && webxdc-dev run debuglog.xdc",
+    "webxdc-build": "npm run build && rimraf ./debug_logging.xdc && cd dist && bestzip --level 9 ../debug_logging.xdc *",
+    "webxdc-dev-xdc": "npm run webxdc-build && webxdc-dev run debug_logging.xdc",
     "serve": "vite preview",
     "test": "jest",
     "typecheck": "tsc --project tsconfig.json --noEmit",

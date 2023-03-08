@@ -4,6 +4,8 @@ import lunr from "lunr";
 
 import { DeltaChatEvent } from "./event";
 import { debounce } from "./debounce";
+import { Payload } from "./types";
+import sampleEvents from "./sampledata.json"
 
 type Search = {
   timestampRange?: TimestampRange;
@@ -18,6 +20,42 @@ export type TimestampRange = {
 const [events, setEvents] = createStore<DeltaChatEvent[]>([]);
 
 export { setEvents };
+
+export function convert_to_dcevent(event: any): Payload {
+  if (typeof event.event === "object") {
+    let event_name = Object.keys(event.event)[0]
+    console.log(typeof event.event[event_name]);
+
+    if (typeof event.event[event_name] == "object") {
+      let inner_event = event.event[event_name]
+      let keys = Object.keys(inner_event)
+      return {
+        ts: event.time,
+        event_type: event_name,
+        data1: inner_event[keys[0]],
+        data2: inner_event[keys[1]],
+      }
+
+    } else {
+      return {
+        ts: event.time,
+        event_type: event_name,
+        data1: null,
+        data2: event.event[event_name],
+      }
+    }
+  }
+  else if (typeof event.event === "string") {
+    return {
+      ts: event.time,
+      data1: null,
+      data2: null,
+      event_type: event.event,
+    }
+  } else {
+    throw new Error("can't happen")
+  }
+}
 
 function inRange(timestampRange: TimestampRange, timestamp: number): boolean {
   return (
@@ -63,6 +101,15 @@ const debouncedFlushEvents = debounce(() => {
   );
   eventsToAdd = [];
 }, 300);
+
+export function addMockEvents() {
+  setEvents(
+    produce((events) => {
+      let curr_index = events.length
+      events.push(...sampleEvents.map((payload, i) => { return { ...convert_to_dcevent(payload), id: curr_index + i } }));
+    })
+  );
+}
 
 export function addEvent(event: DeltaChatEvent): void {
   eventsToAdd.push(event);

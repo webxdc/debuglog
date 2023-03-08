@@ -1,10 +1,10 @@
-import { addEvent } from "./store";
+import { addEvent, convert_to_dcevent } from "./store";
 
 let idCounter = 0;
 
 export function installUpdateListener() {
   window.webxdc.setUpdateListener((update) => {
-    addEvent({ ...update.payload, id: idCounter });
+    addEvent({ ...convert_to_dcevent(update.payload), id: idCounter });
     idCounter++;
   }, 0);
 }
